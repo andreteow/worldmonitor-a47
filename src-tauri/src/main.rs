@@ -539,7 +539,7 @@ fn open_settings_window(app: &AppHandle) -> Result<(), String> {
         .inner_size(980.0, 760.0)
         .min_inner_size(820.0, 620.0)
         .resizable(true)
-        .background_color(tauri::webview::Color(26, 28, 30, 255))
+        .background_color(tauri::webview::Color(10, 10, 31, 255))
         .build()
         .map_err(|e| format!("Failed to create settings window: {e}"))?;
 
@@ -576,7 +576,7 @@ fn open_live_channels_window(app: &AppHandle, base_url: Option<String>) -> Resul
     .inner_size(680.0, 760.0)
     .min_inner_size(520.0, 600.0)
     .resizable(true)
-    .background_color(tauri::webview::Color(26, 28, 30, 255))
+    .background_color(tauri::webview::Color(10, 10, 31, 255))
     .build()
     .map_err(|e| format!("Failed to create live channels window: {e}"))?;
 

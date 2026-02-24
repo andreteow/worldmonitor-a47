@@ -1179,10 +1179,10 @@ export class DeckGLMap {
       getPath: (d) => d.points,
       getColor: (d) => {
         if (highlightedPipelines.has(d.id)) {
-          return [255, 100, 100, 200] as [number, number, number, number];
+          return [255, 60, 81, 200] as [number, number, number, number];
         }
         const colorKey = d.type as keyof typeof PIPELINE_COLORS;
-        const hex = PIPELINE_COLORS[colorKey] || '#666666';
+        const hex = PIPELINE_COLORS[colorKey] || '#393b54';
         return this.hexToRgba(hex, 150);
       },
       getWidth: (d) => highlightedPipelines.has(d.id) ? 3 : 1.5,
@@ -1398,7 +1398,7 @@ export class DeckGLMap {
       getSize: (d) => highlightedDC.has(d.id) ? 14 : 10,
       getColor: (d) => {
         if (highlightedDC.has(d.id)) {
-          return [255, 100, 100, 200] as [number, number, number, number];
+          return [255, 60, 81, 200] as [number, number, number, number];
         }
         if (d.status === 'planned') {
           return [136, 68, 255, 100] as [number, number, number, number]; // Transparent for planned
@@ -1540,9 +1540,9 @@ export class DeckGLMap {
         const alpha = Math.round(40 + intensity * 160);
         // Orange for congested areas, cyan for normal traffic
         if (isCongested) {
-          return [255, 183, 3, alpha] as [number, number, number, number]; // #ffb703
+          return [254, 237, 85, alpha] as [number, number, number, number]; // #feed55
         }
-        return [0, 209, 255, alpha] as [number, number, number, number]; // #00d1ff
+        return [71, 245, 200, alpha] as [number, number, number, number]; // #47f5c8
       },
       radiusMinPixels: 4,
       radiusMaxPixels: 12,
@@ -1643,7 +1643,7 @@ export class DeckGLMap {
       getFillColor: (d) => {
         // Vessel types: 'exercise' | 'deployment' | 'transit' | 'unknown'
         const activity = d.activityType || 'unknown';
-        if (activity === 'exercise' || activity === 'deployment') return [255, 100, 100, 200] as [number, number, number, number];
+        if (activity === 'exercise' || activity === 'deployment') return [255, 60, 81, 200] as [number, number, number, number];
         if (activity === 'transit') return [255, 180, 100, 180] as [number, number, number, number];
         return [200, 150, 150, 160] as [number, number, number, number];
       },
@@ -3731,7 +3731,7 @@ export class DeckGLMap {
           type: 'fill',
           source: 'country-boundaries',
           paint: {
-            'fill-color': '#3b82f6',
+            'fill-color': '#8f49ff',
             'fill-opacity': 0,
           },
         });
@@ -3740,7 +3740,7 @@ export class DeckGLMap {
           type: 'fill',
           source: 'country-boundaries',
           paint: {
-            'fill-color': '#3b82f6',
+            'fill-color': '#8f49ff',
             'fill-opacity': 0.06,
           },
           filter: ['==', ['get', 'name'], ''],
@@ -3750,7 +3750,7 @@ export class DeckGLMap {
           type: 'fill',
           source: 'country-boundaries',
           paint: {
-            'fill-color': '#3b82f6',
+            'fill-color': '#8f49ff',
             'fill-opacity': 0.12,
           },
           filter: ['==', ['get', 'ISO3166-1-Alpha-2'], ''],
@@ -3760,7 +3760,7 @@ export class DeckGLMap {
           type: 'line',
           source: 'country-boundaries',
           paint: {
-            'line-color': '#3b82f6',
+            'line-color': '#8f49ff',
             'line-width': 1.5,
             'line-opacity': 0.5,
           },
