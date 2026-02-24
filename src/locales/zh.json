@@ -249,76 +249,6 @@
       "dontShowAgain": "不再显示",
       "gotIt": "知道了"
     },
-    "downloadBanner": {
-      "title": "桌面版可用",
-      "description": "原生性能，安全的本地密钥存储，离线地图切片。",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "显示所有平台",
-      "showLess": "收起",
-      "dismiss": "忽略"
-    },
-    "runtimeConfig": {
-      "title": "桌面端配置",
-      "alertTitle": {
-        "configured": "桌面端设置已配置",
-        "needsKeys": "配置API密钥以解锁功能",
-        "some": "部分功能需要API密钥"
-      },
-      "openSettings": "打开设置",
-      "summary": {
-        "desktop": "桌面模式",
-        "web": "网页模式（只读，服务器管理凭证）",
-        "secrets": "个本地密钥已配置",
-        "available": "项功能可用"
-      },
-      "status": {
-        "ready": "就绪",
-        "staged": "已暂存",
-        "needsKeys": "需要密钥",
-        "invalid": "无效",
-        "missing": "缺失",
-        "valid": "有效",
-        "looksInvalid": "似乎无效"
-      },
-      "placeholder": {
-        "setSecret": "设置密钥",
-        "staged": "已暂存（点击确定保存）"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "用于URLhaus和ThreatFox API。",
-        "OTX_API_KEY": "网络威胁图层的可选增强数据源。",
-        "ABUSEIPDB_API_KEY": "恶意IP信誉的可选增强数据源。",
-        "FINNHUB_API_KEY": "实时股票报价和市场数据。",
-        "NASA_FIRMS_API_KEY": "消防信息资源管理系统。",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
-    "settingsWindow": {
-      "validating": "正在验证API密钥...",
-      "saved": "设置已保存",
-      "failed": "保存失败：{{error}}",
-      "verifyFailed": "已保存已验证的密钥。失败：{{errors}}",
-      "verboseOn": "详细日志模式已开启（已保存）",
-      "verboseOff": "详细日志模式已关闭（已保存）",
-      "invokeFail": "无法运行{{command}}。请检查桌面日志。",
-      "openLogs": "已打开日志文件夹",
-      "openApiLog": "已打开API日志",
-      "sidecarError": "无法连接到sidecar切换详细模式",
-      "noTraffic": "尚未记录任何流量。",
-      "sidecarUnreachable": "Sidecar不可达。",
-      "logCleared": "日志已清除。",
-      "table": {
-        "time": "时间",
-        "method": "方法",
-        "path": "路径",
-        "status": "状态",
-        "duration": "耗时"
-      }
-    },
     "countryIntel": {
       "identifying": "正在识别国家...",
       "locating": "正在定位区域...",
@@ -804,7 +734,7 @@
     },
     "insights": {
       "noStories": "暂无突发或多源报道",
-      "infoTooltip": "<strong>AI驱动分析</strong><br>• <strong>世界简报</strong>：AI摘要（Groq/OpenRouter）<br>• <strong>情绪分析</strong>：新闻情感分析<br>• <strong>传播速度</strong>：快速传播的报道<br>• <strong>焦点</strong>：将新闻实体与地图信号（军事、抗议、中断）关联<br><em>仅限桌面端 • 由Llama 3.3 + 焦点检测驱动</em>",
+      "infoTooltip": "<strong>AI驱动分析</strong><br>• <strong>世界简报</strong>：AI摘要（Groq/OpenRouter）<br>• <strong>情绪分析</strong>：新闻情感分析<br>• <strong>传播速度</strong>：快速传播的报道<br>• <strong>焦点</strong>：将新闻实体与地图信号（军事、抗议、中断）关联",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -986,9 +916,6 @@
     "export": {
       "exportData": "导出数据"
     },
-    "runtimeConfig": {
-      "getApiKey": "获取API密钥"
-    },
     "intelligenceFindings": {
       "badgeTitle": "情报发现",
       "title": "情报发现",
@@ -1106,8 +1033,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

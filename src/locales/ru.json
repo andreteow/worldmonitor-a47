@@ -249,76 +249,6 @@
       "dontShowAgain": "Больше не показывать",
       "gotIt": "Понятно"
     },
-    "downloadBanner": {
-      "title": "Доступна настольная версия",
-      "description": "Нативная производительность, безопасное локальное хранение ключей, офлайн-карты.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "Все платформы",
-      "showLess": "Свернуть",
-      "dismiss": "Скрыть"
-    },
-    "runtimeConfig": {
-      "title": "Настройки рабочего стола",
-      "alertTitle": {
-        "configured": "Настройки рабочего стола сконфигурированы",
-        "needsKeys": "Настройте API-ключи для разблокировки функций",
-        "some": "Некоторым функциям требуются API-ключи"
-      },
-      "openSettings": "Открыть настройки",
-      "summary": {
-        "desktop": "Режим рабочего стола",
-        "web": "Веб-режим (только чтение, серверные учётные данные)",
-        "secrets": "локальных секретов настроено",
-        "available": "функций доступно"
-      },
-      "status": {
-        "ready": "Готово",
-        "staged": "Подготовлено",
-        "needsKeys": "Требуются ключи",
-        "invalid": "Недействительно",
-        "missing": "Отсутствует",
-        "valid": "Действительно",
-        "looksInvalid": "Вероятно недействительно"
-      },
-      "placeholder": {
-        "setSecret": "Задать секрет",
-        "staged": "Подготовлено (сохранить через OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Используется для API URLhaus и ThreatFox.",
-        "OTX_API_KEY": "Дополнительный источник обогащения для уровня киберугроз.",
-        "ABUSEIPDB_API_KEY": "Дополнительный источник репутации вредоносных IP-адресов.",
-        "FINNHUB_API_KEY": "Котировки акций и рыночные данные в реальном времени.",
-        "NASA_FIRMS_API_KEY": "Система управления информацией о пожарах.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
-    "settingsWindow": {
-      "validating": "Проверка API-ключей...",
-      "saved": "Настройки сохранены",
-      "failed": "Ошибка сохранения: {{error}}",
-      "verifyFailed": "Проверенные ключи сохранены. Ошибки: {{errors}}",
-      "verboseOn": "Подробное логирование включено (сохранено)",
-      "verboseOff": "Подробное логирование выключено (сохранено)",
-      "invokeFail": "Не удалось выполнить {{command}}. Проверьте журнал рабочего стола.",
-      "openLogs": "Папка журналов открыта",
-      "openApiLog": "Журнал API открыт",
-      "sidecarError": "Не удалось связаться с сайдкаром для переключения режима логирования",
-      "noTraffic": "Трафик ещё не зафиксирован.",
-      "sidecarUnreachable": "Сайдкар недоступен.",
-      "logCleared": "Журнал очищен.",
-      "table": {
-        "time": "Время",
-        "method": "Метод",
-        "path": "Путь",
-        "status": "Статус",
-        "duration": "Длительность"
-      }
-    },
     "countryIntel": {
       "identifying": "Определение страны...",
       "locating": "Определение региона...",
@@ -804,7 +734,7 @@
     },
     "insights": {
       "noStories": "Пока нет экстренных или мультиисточниковых сюжетов",
-      "infoTooltip": "<strong>ИИ-аналитика</strong><br>• <strong>Мировая сводка</strong>: ИИ-суммаризация (Groq/OpenRouter)<br>• <strong>Тональность</strong>: Анализ тона новостей<br>• <strong>Скорость</strong>: Быстро развивающиеся сюжеты<br>• <strong>Фокусные точки</strong>: Корреляция сущностей новостей с сигналами карты (военные, протесты, сбои)<br><em>Только для десктопа • На основе Llama 3.3 + Обнаружение фокусных точек</em>",
+      "infoTooltip": "<strong>ИИ-аналитика</strong><br>• <strong>Мировая сводка</strong>: ИИ-суммаризация (Groq/OpenRouter)<br>• <strong>Тональность</strong>: Анализ тона новостей<br>• <strong>Скорость</strong>: Быстро развивающиеся сюжеты<br>• <strong>Фокусные точки</strong>: Корреляция сущностей новостей с сигналами карты (военные, протесты, сбои)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -1019,9 +949,6 @@
     "export": {
       "exportData": "Экспорт данных"
     },
-    "runtimeConfig": {
-      "getApiKey": "Получить API-ключ"
-    },
     "intelligenceFindings": {
       "badgeTitle": "Разведывательные обнаружения",
       "title": "Разведывательные обнаружения",
@@ -1106,8 +1033,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

@@ -249,54 +249,6 @@
       "dontShowAgain": "Nie pokazuj więcej",
       "gotIt": "Rozumiem"
     },
-    "downloadBanner": {
-      "title": "Dostępny komputer stacjonarny",
-      "description": "Natywna wydajność, bezpieczne lokalne przechowywanie kluczy, kafelki map offline.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "dismiss": "Odrzucać",
-      "showAllPlatforms": "Pokaż wszystkie platformy",
-      "showLess": "Pokaż mniej"
-    },
-    "runtimeConfig": {
-      "title": "Konfiguracja pulpitu",
-      "alertTitle": {
-        "configured": "Skonfigurowano ustawienia pulpitu",
-        "needsKeys": "Skonfiguruj klucze API, aby odblokować funkcje",
-        "some": "Niektóre funkcje wymagają kluczy API"
-      },
-      "openSettings": "Otwórz Ustawienia",
-      "summary": {
-        "desktop": "Tryb pulpitu",
-        "web": "Tryb sieciowy (tylko do odczytu, dane uwierzytelniające zarządzane przez serwer)",
-        "secrets": "skonfigurowane lokalne sekrety",
-        "available": "dostępne funkcje"
-      },
-      "status": {
-        "ready": "Gotowy",
-        "staged": "Wystawiany na scenie",
-        "needsKeys": "Potrzebuje kluczy",
-        "invalid": "Nieważny",
-        "missing": "Zaginiony",
-        "valid": "Ważny",
-        "looksInvalid": "Wygląda nieprawidłowo"
-      },
-      "placeholder": {
-        "setSecret": "Ustal tajemnicę",
-        "staged": "Inscenizacja (zapisz za pomocą OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Używany zarówno dla API URLhaus, jak i ThreatFox.",
-        "OTX_API_KEY": "Opcjonalne źródło wzbogacania warstwy zagrożeń cybernetycznych.",
-        "ABUSEIPDB_API_KEY": "Opcjonalne źródło wzbogacania reputacji złośliwych adresów IP.",
-        "FINNHUB_API_KEY": "Notowania giełdowe w czasie rzeczywistym i dane rynkowe.",
-        "NASA_FIRMS_API_KEY": "System informacji o pożarach do zarządzania zasobami.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
     "countryIntel": {
       "identifying": "Identyfikacja kraju...",
       "locating": "Lokalizowanie regionu...",
@@ -386,28 +338,6 @@
         "stockIndex": "Indeks giełdowy: {{value}}",
         "recentHeadlines": "**Ostatnie nagłówki:**"
       }
-    },
-    "settingsWindow": {
-      "invokeFail": "Nie udało się uruchomić {{command}}. Sprawdź dziennik pulpitu.",
-      "validating": "Sprawdzanie kluczy API...",
-      "verifyFailed": "Zapisano zweryfikowane klucze. Niepowodzenie: {{errors}}",
-      "saved": "Ustawienia zostały zapisane",
-      "failed": "Zapis nie powiódł się: {{error}}",
-      "openLogs": "Otwarto folder dzienników",
-      "openApiLog": "Otwarty dziennik API",
-      "verboseOn": "Pełne rejestrowanie wózka bocznego WŁ. (zapisano)",
-      "verboseOff": "Pełne rejestrowanie wózka bocznego WYŁ. (zapisano)",
-      "sidecarError": "Nie udało się dotrzeć do wózka bocznego, aby przełączyć tryb szczegółowy",
-      "noTraffic": "Nie zarejestrowano jeszcze żadnego ruchu.",
-      "table": {
-        "time": "Czas",
-        "method": "Metoda",
-        "path": "Ścieżka",
-        "status": "Status",
-        "duration": "Czas trwania"
-      },
-      "sidecarUnreachable": "Wózek boczny nieosiągalny.",
-      "logCleared": "Log wyczyszczony."
     }
   },
   "components": {
@@ -1058,7 +988,7 @@
     },
     "insights": {
       "noStories": "Brak pilnych lub wieloźródłowych wiadomości",
-      "infoTooltip": "<strong>Analiza oparta na sztucznej inteligencji</strong><br>• <strong>World Brief</strong>: Podsumowanie sztucznej inteligencji (Groq/OpenRouter)<br>• <strong>Nastroje</strong>: Analiza tonu wiadomości<br>• <strong>Velocity</strong>: Szybkie historie<br>• <strong>Focal Punkty</strong>: Koreluje wiadomości z sygnałami z mapy (wojsko, protesty, awarie)<br><em>Tylko komputer stacjonarny • Obsługiwane przez Lamę 3.3 + wykrywanie punktów ogniskowych</em>",
+      "infoTooltip": "<strong>Analiza oparta na sztucznej inteligencji</strong><br>• <strong>World Brief</strong>: Podsumowanie sztucznej inteligencji (Groq/OpenRouter)<br>• <strong>Nastroje</strong>: Analiza tonu wiadomości<br>• <strong>Velocity</strong>: Szybkie historie<br>• <strong>Focal Punkty</strong>: Koreluje wiadomości z sygnałami z mapy (wojsko, protesty, awarie)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -1101,13 +1031,9 @@
     "export": {
       "exportData": "Eksportuj dane"
     },
-    "runtimeConfig": {
-      "getApiKey": "Pobierz klucz API"
-    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

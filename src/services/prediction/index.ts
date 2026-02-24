@@ -1,8 +1,6 @@
 import { PredictionServiceClient } from '@/generated/client/worldmonitor/prediction/v1/service_client';
 import { createCircuitBreaker } from '@/utils';
 import { SITE_VARIANT } from '@/config';
-import { isDesktopRuntime } from '@/services/runtime';
-import { tryInvokeTauri } from '@/services/tauri-bridge';
 
 // Consumer-friendly type (re-export, matches legacy shape)
 export interface PredictionMarket {
@@ -106,19 +104,6 @@ async function polyFetch(endpoint: 'events' | 'markets', params: Record<string, 
       directFetchWorks = false;
       logDirectFetchBlockedOnce();
     }
-  }
-
-  // Desktop: use Tauri Rust command (native TLS bypasses Cloudflare JA3 blocking)
-  if (isDesktopRuntime()) {
-    try {
-      const body = await tryInvokeTauri<string>('fetch_polymarket', { path: endpoint, params: qs });
-      if (body) {
-        return new Response(body, {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      }
-    } catch { /* Tauri command failed, fall through to proxy */ }
   }
 
   // Proxy params (expects 'tag' not 'tag_slug' for Vercel handler)

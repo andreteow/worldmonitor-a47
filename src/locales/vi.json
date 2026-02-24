@@ -249,76 +249,6 @@
       "dontShowAgain": "Không hiển thị lại",
       "gotIt": "Đã hiểu"
     },
-    "downloadBanner": {
-      "title": "Phiên bản Desktop",
-      "description": "Hiệu suất gốc, lưu trữ khóa cục bộ an toàn, bản đồ ngoại tuyến.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "Hiện tất cả nền tảng",
-      "showLess": "Thu gọn",
-      "dismiss": "Bỏ qua"
-    },
-    "runtimeConfig": {
-      "title": "Cấu hình Desktop",
-      "alertTitle": {
-        "configured": "Đã cấu hình cài đặt desktop",
-        "needsKeys": "Cấu hình khóa API để mở khóa tính năng",
-        "some": "Một số tính năng cần khóa API"
-      },
-      "openSettings": "Mở Cài đặt",
-      "summary": {
-        "desktop": "Chế độ desktop",
-        "web": "Chế độ web (chỉ đọc, thông tin xác thực do máy chủ quản lý)",
-        "secrets": "bí mật cục bộ đã cấu hình",
-        "available": "tính năng khả dụng"
-      },
-      "status": {
-        "ready": "Sẵn sàng",
-        "staged": "Đã chuẩn bị",
-        "needsKeys": "Cần Khóa",
-        "invalid": "Không hợp lệ",
-        "missing": "Thiếu",
-        "valid": "Hợp lệ",
-        "looksInvalid": "Có vẻ không hợp lệ"
-      },
-      "placeholder": {
-        "setSecret": "Đặt bí mật",
-        "staged": "Đã chuẩn bị (lưu bằng OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Dùng cho cả API URLhaus và ThreatFox.",
-        "OTX_API_KEY": "Nguồn bổ sung tùy chọn cho lớp mối đe dọa mạng.",
-        "ABUSEIPDB_API_KEY": "Nguồn bổ sung tùy chọn cho danh tiếng IP độc hại.",
-        "FINNHUB_API_KEY": "Báo giá cổ phiếu và dữ liệu thị trường thời gian thực.",
-        "NASA_FIRMS_API_KEY": "Hệ thống Thông tin Cháy rừng để Quản lý Tài nguyên.",
-        "OLLAMA_API_URL": "Ví dụ: http://127.0.0.1:11434 (Ollama) hoặc http://127.0.0.1:1234/v1 (LM Studio) — endpoint tương thích OpenAI.",
-        "OLLAMA_MODEL": "Ví dụ: llama3.1:8b — thẻ mô hình dùng để tóm tắt."
-      }
-    },
-    "settingsWindow": {
-      "validating": "Đang xác thực khóa API...",
-      "saved": "Đã lưu cài đặt",
-      "failed": "Lưu thất bại: {{error}}",
-      "verifyFailed": "Đã lưu khóa đã xác minh. Thất bại: {{errors}}",
-      "verboseOn": "Ghi log chi tiết sidecar BẬT (đã lưu)",
-      "verboseOff": "Ghi log chi tiết sidecar TẮT (đã lưu)",
-      "invokeFail": "Không thể chạy {{command}}. Kiểm tra log desktop.",
-      "openLogs": "Đã mở thư mục log",
-      "openApiLog": "Đã mở log API",
-      "sidecarError": "Không thể kết nối sidecar để chuyển chế độ chi tiết",
-      "noTraffic": "Chưa ghi nhận lưu lượng.",
-      "sidecarUnreachable": "Không thể kết nối sidecar.",
-      "logCleared": "Đã xóa log.",
-      "table": {
-        "time": "Thời gian",
-        "method": "Phương thức",
-        "path": "Đường dẫn",
-        "status": "Trạng thái",
-        "duration": "Thời lượng"
-      }
-    },
     "countryIntel": {
       "identifying": "Đang xác định quốc gia...",
       "locating": "Đang định vị khu vực...",
@@ -809,7 +739,7 @@
       "rankingStories": "Đang xếp hạng tin quan trọng...",
       "analyzingSentiment": "Đang phân tích cảm xúc...",
       "generatingBrief": "Đang tạo bản tin thế giới...",
-      "infoTooltip": "<strong>Phân tích Hỗ trợ AI</strong><br>• <strong>Bản tin Thế giới</strong>: Tóm tắt AI (Groq/OpenRouter)<br>• <strong>Cảm xúc</strong>: Phân tích sắc thái tin tức<br>• <strong>Tốc độ</strong>: Tin đang lan nhanh<br>• <strong>Điểm Hội tụ</strong>: Tương quan thực thể tin tức với tín hiệu bản đồ (quân sự, biểu tình, gián đoạn)<br><em>Chỉ Desktop • Được hỗ trợ bởi Llama 3.3 + Phát hiện Điểm Hội tụ</em>"
+      "infoTooltip": "<strong>Phân tích Hỗ trợ AI</strong><br>• <strong>Bản tin Thế giới</strong>: Tóm tắt AI (Groq/OpenRouter)<br>• <strong>Cảm xúc</strong>: Phân tích sắc thái tin tức<br>• <strong>Tốc độ</strong>: Tin đang lan nhanh<br>• <strong>Điểm Hội tụ</strong>: Tương quan thực thể tin tức với tín hiệu bản đồ (quân sự, biểu tình, gián đoạn)"
     },
     "cascade": {
       "noImpacts": "Không phát hiện tác động quốc gia",
@@ -986,9 +916,6 @@
     "export": {
       "exportData": "Xuất Dữ liệu"
     },
-    "runtimeConfig": {
-      "getApiKey": "Lấy khóa API"
-    },
     "intelligenceFindings": {
       "hideFindings": "Ẩn Phát hiện Tình báo",
       "badgeTitle": "Phát hiện tình báo",
@@ -1106,8 +1033,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Hiện thông tin phương pháp luận",
-      "dragToResize": "Kéo để thay đổi kích thước (nhấp đúp để đặt lại)",
-      "openSettings": "Mở Cài đặt"
+      "dragToResize": "Kéo để thay đổi kích thước (nhấp đúp để đặt lại)"
     },
     "languageSelector": {
       "selectLanguage": "Chọn Ngôn ngữ"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Suy giảm",
       "outage": "Gián đoạn",
-      "backendUnavailable": "Backend cục bộ desktop không khả dụng. Chuyển sang API đám mây.",
-      "desktopReadiness": "Mức sẵn sàng desktop",
-      "acceptanceChecks": "Kiểm tra chấp nhận: {{ready}}/{{total}} sẵn sàng · tính năng có khóa {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Dự phòng không tương đương ({{count}})",
       "categories": {
         "all": "Tất cả",
         "cloud": "Đám mây",

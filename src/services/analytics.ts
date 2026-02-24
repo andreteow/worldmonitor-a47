@@ -11,11 +11,9 @@
  * - distinct_id is a random UUID — pseudonymous, not identifiable
  */
 
-import { isDesktopRuntime } from './runtime';
 import { getRuntimeConfigSnapshot, type RuntimeSecretKey } from './runtime-config';
 import { SITE_VARIANT } from '@/config';
 import { isMobileDevice } from '@/utils';
-import { invokeTauri } from './tauri-bridge';
 
 // ── Installation identity ──
 
@@ -89,8 +87,6 @@ const EVENT_SCHEMAS: Record<string, Set<string>> = {
   wm_update_clicked: new Set(['target_version']),
   wm_update_dismissed: new Set(['target_version']),
   wm_critical_banner_action: new Set(['action', 'theater_id']),
-  wm_download_clicked: new Set(['platform']),
-  wm_download_banner_dismissed: new Set([]),
   wm_webcam_selected: new Set(['webcam_id', 'city', 'view_mode']),
   wm_webcam_region_filtered: new Set(['region']),
   wm_deeplink_opened: new Set(['deeplink_type', 'target']),
@@ -134,9 +130,7 @@ let posthogInstance: PostHogInstance | null = null;
 let initPromise: Promise<void> | null = null;
 
 const POSTHOG_KEY = import.meta.env.VITE_POSTHOG_KEY as string | undefined;
-const POSTHOG_HOST = isDesktopRuntime()
-  ? ((import.meta.env.VITE_POSTHOG_HOST as string | undefined) || 'https://us.i.posthog.com')
-  : '/ingest'; // Reverse proxy through own domain to bypass ad blockers
+const POSTHOG_HOST = '/ingest'; // Reverse proxy through own domain to bypass ad blockers
 
 // ── Public API ──
 
@@ -161,8 +155,8 @@ export async function initAnalytics(): Promise<void> {
       });
 
       // Register super properties (attached to every event)
-      const superProps: Record<string, unknown> = {
-        platform: isDesktopRuntime() ? 'desktop' : 'web',
+      posthog.register({
+        platform: 'web',
         variant: SITE_VARIANT,
         app_version: __APP_VERSION__,
         is_mobile: isMobileDevice(),
@@ -176,20 +170,7 @@ export async function initAnalytics(): Promise<void> {
         browser_language: navigator.language,
         local_hour: new Date().getHours(),
         local_day: new Date().getDay(),
-      };
-
-      // Desktop additionally registers OS and arch
-      if (isDesktopRuntime()) {
-        try {
-          const info = await invokeTauri<{ os: string; arch: string }>('get_desktop_runtime_info');
-          superProps.desktop_os = info.os;
-          superProps.desktop_arch = info.arch;
-        } catch {
-          // Tauri bridge may not be available yet
-        }
-      }
-
-      posthog.register(superProps);
+      });
       posthogInstance = posthog as unknown as PostHogInstance;
 
       // Fire $pageview manually after full init — auto capture_pageview: true
@@ -197,13 +178,6 @@ export async function initAnalytics(): Promise<void> {
       // fails with bootstrap + SPA setups (posthog-js #386).
       posthog.capture('$pageview');
 
-      // Flush any events queued while offline (desktop)
-      flushOfflineQueue();
-
-      // Re-flush when coming back online
-      if (isDesktopRuntime()) {
-        window.addEventListener('online', () => flushOfflineQueue());
-      }
     } catch (error) {
       console.warn('[Analytics] Failed to initialize PostHog:', error);
     }
@@ -212,40 +186,9 @@ export async function initAnalytics(): Promise<void> {
   return initPromise;
 }
 
-// ── Offline event queue (desktop) ──
-
-const OFFLINE_QUEUE_KEY = 'wm-analytics-offline-queue';
-const OFFLINE_QUEUE_CAP = 200;
-
-function enqueueOffline(name: string, props: Record<string, unknown>): void {
-  try {
-    const raw = localStorage.getItem(OFFLINE_QUEUE_KEY);
-    const queue: Array<{ name: string; props: Record<string, unknown>; ts: number }> = raw ? JSON.parse(raw) : [];
-    queue.push({ name, props, ts: Date.now() });
-    if (queue.length > OFFLINE_QUEUE_CAP) queue.splice(0, queue.length - OFFLINE_QUEUE_CAP);
-    localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue));
-  } catch { /* localStorage full or unavailable */ }
-}
-
-function flushOfflineQueue(): void {
-  if (!posthogInstance) return;
-  try {
-    const raw = localStorage.getItem(OFFLINE_QUEUE_KEY);
-    if (!raw) return;
-    const queue: Array<{ name: string; props: Record<string, unknown> }> = JSON.parse(raw);
-    localStorage.removeItem(OFFLINE_QUEUE_KEY);
-    for (const { name, props } of queue) {
-      posthogInstance.capture(name, props);
-    }
-  } catch { /* corrupt queue, discard */ }
-}
-
 export function trackEvent(name: string, props?: Record<string, unknown>): void {
   const safeProps = props ? sanitizeProps(name, props) : {};
-  if (!posthogInstance) {
-    if (isDesktopRuntime() && POSTHOG_KEY) enqueueOffline(name, safeProps);
-    return;
-  }
+  if (!posthogInstance) return;
   posthogInstance.capture(name, safeProps);
 }
 
@@ -272,7 +215,7 @@ export function trackApiKeysSnapshot(): void {
     .filter(([, v]) => v).map(([k]) => k);
 
   trackEvent('wm_api_keys_configured', {
-    platform: isDesktopRuntime() ? 'desktop' : 'web',
+    platform: 'web',
     total_keys_configured: Object.values(presence).filter(Boolean).length,
     ...presence,
     enabled_features: enabledFeatures,
@@ -359,14 +302,6 @@ export function trackUpdateDismissed(version: string): void {
 
 export function trackCriticalBannerAction(action: string, theaterId: string): void {
   trackEvent('wm_critical_banner_action', { action, theater_id: theaterId });
-}
-
-export function trackDownloadClicked(platform: string): void {
-  trackEvent('wm_download_clicked', { platform });
-}
-
-export function trackDownloadBannerDismissed(): void {
-  trackEvent('wm_download_banner_dismissed');
 }
 
 export function trackWebcamSelected(webcamId: string, city: string, viewMode: string): void {

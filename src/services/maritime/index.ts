@@ -9,7 +9,7 @@ import type { AisDisruptionEvent, AisDensityZone, AisDisruptionType } from '@/ty
 import { dataFreshness } from '../data-freshness';
 import { isFeatureAvailable } from '../runtime-config';
 
-// ---- Proto fallback (desktop safety when relay URL is unavailable) ----
+// ---- Proto fallback (safety when relay URL is unavailable) ----
 
 const client = new MaritimeServiceClient('', { fetch: (...args) => globalThis.fetch(...args) });
 const snapshotBreaker = createCircuitBreaker<GetVesselSnapshotResponse>({ name: 'Maritime Snapshot' });
@@ -203,7 +203,7 @@ async function fetchSnapshotPayload(includeCandidates: boolean): Promise<unknown
     // Prefer direct relay path to avoid normal web traffic double-hop via Vercel.
     return await fetchRawRelaySnapshot(false);
   } catch (rawError) {
-    // Desktop fallback: use proto route when relay URL/local relay is unavailable.
+    // Fallback: use proto route when relay URL is unavailable.
     const response = await snapshotBreaker.execute(async () => {
       return client.getVesselSnapshot({});
     }, emptySnapshotFallback);

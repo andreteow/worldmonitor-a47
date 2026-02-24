@@ -249,54 +249,6 @@
       "dontShowAgain": "Non mostrare più",
       "gotIt": "Fatto"
     },
-    "downloadBanner": {
-      "title": "Tavolo disponibile",
-      "description": "Prestazioni native, archiviazione sicura delle chiavi locali, riquadri della mappa offline.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "dismiss": "Congedare",
-      "showAllPlatforms": "Mostra tutte le piattaforme",
-      "showLess": "Mostra meno"
-    },
-    "runtimeConfig": {
-      "title": "Configurazione del desktop",
-      "alertTitle": {
-        "configured": "Impostazioni del desktop configurate",
-        "needsKeys": "Configura le chiavi API per sbloccare funzionalità",
-        "some": "Alcune funzionalità richiedono chiavi API"
-      },
-      "openSettings": "Apri Impostazioni",
-      "summary": {
-        "desktop": "Modalità desktop",
-        "web": "Modalità Web (credenziali di sola lettura, gestite dal server)",
-        "secrets": "segreti locali configurati",
-        "available": "funzionalità disponibili"
-      },
-      "status": {
-        "ready": "Pronto",
-        "staged": "In scena",
-        "needsKeys": "Ha bisogno di chiavi",
-        "invalid": "Non valido",
-        "missing": "Mancante",
-        "valid": "Valido",
-        "looksInvalid": "Sembra non valido"
-      },
-      "placeholder": {
-        "setSecret": "Imposta segreto",
-        "staged": "In scena (salvare con OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Utilizzata per le API URLhaus e ThreatFox.",
-        "OTX_API_KEY": "Fonte di arricchimento opzionale per il livello minacce cyber.",
-        "ABUSEIPDB_API_KEY": "Fonte di arricchimento opzionale per la reputazione IP malevoli.",
-        "FINNHUB_API_KEY": "Quotazioni azionarie in tempo reale e dati di mercato.",
-        "NASA_FIRMS_API_KEY": "Sistema informativo sugli incendi per la gestione delle risorse.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
     "countryIntel": {
       "identifying": "Identificazione del paese...",
       "locating": "Localizzazione della regione...",
@@ -386,28 +338,6 @@
         "stockIndex": "Indice azionario: {{value}}",
         "recentHeadlines": "**Titoli recenti:**"
       }
-    },
-    "settingsWindow": {
-      "invokeFail": "Impossibile eseguire {{command}}. Controlla il registro del desktop.",
-      "validating": "Convalida delle chiavi API in corso...",
-      "verifyFailed": "Chiavi verificate salvate. Non riuscito: {{errors}}",
-      "saved": "Impostazioni salvate",
-      "failed": "Salvataggio non riuscito: {{error}}",
-      "openLogs": "Cartella dei registri aperta",
-      "openApiLog": "Registro API aperto",
-      "verboseOn": "Accesso sidecar dettagliato attivato (salvato)",
-      "verboseOff": "Registrazione sidecar dettagliata disattivata (salvata)",
-      "sidecarError": "Impossibile raggiungere il sidecar per attivare/disattivare la modalità dettagliata",
-      "noTraffic": "Nessun traffico ancora registrato.",
-      "table": {
-        "time": "Tempo",
-        "method": "Metodo",
-        "path": "Sentiero",
-        "status": "Stato",
-        "duration": "Durata"
-      },
-      "sidecarUnreachable": "Sidecar non raggiungibile.",
-      "logCleared": "Registro cancellato."
     }
   },
   "components": {
@@ -1058,7 +988,7 @@
     },
     "insights": {
       "noStories": "Nessuna notizia urgente o multi-fonte al momento",
-      "infoTooltip": "<strong>Analisi basata sull'intelligenza artificiale</strong><br>• <strong>World Brief</strong>: Riepilogo AI (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: Analisi del tono delle notizie<br>• <strong>Velocity</strong>: In rapido movimento storie<br>• <strong>Focal Points</strong>: correla le entità delle notizie con i segnali della mappa (militari, proteste, interruzioni)<br><em>Solo desktop • Fornito da Llama 3.3 + Focal Point Detection</em>",
+      "infoTooltip": "<strong>Analisi basata sull'intelligenza artificiale</strong><br>• <strong>World Brief</strong>: Riepilogo AI (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: Analisi del tono delle notizie<br>• <strong>Velocity</strong>: In rapido movimento storie<br>• <strong>Focal Points</strong>: correla le entità delle notizie con i segnali della mappa (militari, proteste, interruzioni)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -1101,13 +1031,9 @@
     "export": {
       "exportData": "Esporta dati"
     },
-    "runtimeConfig": {
-      "getApiKey": "Ottieni chiave API"
-    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

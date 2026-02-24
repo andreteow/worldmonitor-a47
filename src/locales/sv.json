@@ -143,54 +143,6 @@
       "dontShowAgain": "Visa inte igen",
       "gotIt": "Jag förstår"
     },
-    "downloadBanner": {
-      "title": "Desktop tillgänglig",
-      "description": "Inbyggd prestanda, säker lokal nyckellagring, offline kartplattor.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "dismiss": "Avfärda",
-      "showAllPlatforms": "Visa alla plattformar",
-      "showLess": "Visa mindre"
-    },
-    "runtimeConfig": {
-      "title": "Skrivbordskonfiguration",
-      "alertTitle": {
-        "configured": "Skrivbordsinställningar konfigurerade",
-        "needsKeys": "Konfigurera API-nycklar för att låsa upp funktioner",
-        "some": "Vissa funktioner behöver API-nycklar"
-      },
-      "openSettings": "Öppna Inställningar",
-      "summary": {
-        "desktop": "Skrivbordsläge",
-        "web": "Webbläge (skrivskyddad, serverhanterade autentiseringsuppgifter)",
-        "secrets": "lokala hemligheter konfigurerade",
-        "available": "tillgängliga funktioner"
-      },
-      "status": {
-        "ready": "Redo",
-        "staged": "Iscensatt",
-        "needsKeys": "Behöver nycklar",
-        "invalid": "Ogiltig",
-        "missing": "Saknad",
-        "valid": "Giltig",
-        "looksInvalid": "Ser ogiltig ut"
-      },
-      "placeholder": {
-        "setSecret": "Ställ hemlighet",
-        "staged": "Iscensatt (spara med OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Används för URLhaus- och ThreatFox-API:erna.",
-        "OTX_API_KEY": "Valfri berikningskälla för cyberhot-lagret.",
-        "ABUSEIPDB_API_KEY": "Valfri berikningskälla för rykte för skadliga IP-adresser.",
-        "FINNHUB_API_KEY": "Aktiekurser och marknadsdata i realtid.",
-        "NASA_FIRMS_API_KEY": "Brandinformationssystem för resurshantering.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
     "countryIntel": {
       "identifying": "Identifierar land...",
       "locating": "Hittar region...",
@@ -294,28 +246,6 @@
       "saved": "Sparad!",
       "copied": "Kopierade!",
       "opening": "Öppning..."
-    },
-    "settingsWindow": {
-      "invokeFail": "Det gick inte att köra {{command}}. Kontrollera skrivbordsloggen.",
-      "validating": "Validerar API-nycklar...",
-      "verifyFailed": "Sparade verifierade nycklar. Misslyckades: {{errors}}",
-      "saved": "Inställningar sparade",
-      "failed": "Det gick inte att spara: {{error}}",
-      "openLogs": "Öppnade loggmappen",
-      "openApiLog": "Öppnad API-logg",
-      "verboseOn": "Utförlig sidovagnsloggning PÅ (sparad)",
-      "verboseOff": "Utförlig sidovagnsloggning AV (sparad)",
-      "sidecarError": "Det gick inte att nå sidovagnen för att växla verbose läge",
-      "noTraffic": "Ingen trafik registrerad ännu.",
-      "table": {
-        "time": "Tid",
-        "method": "Metod",
-        "path": "Väg",
-        "status": "Status",
-        "duration": "Varaktighet"
-      },
-      "sidecarUnreachable": "Sidovagn går inte att nå.",
-      "logCleared": "Loggen rensad."
     }
   },
   "components": {
@@ -911,7 +841,7 @@
       }
     },
     "insights": {
-      "infoTooltip": "<strong>AI-driven analys</strong><br>• <strong>World Brief</strong>: AI-sammanfattning (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: Nyhetstonanalys<br>• <strong>__2__hastighet: snabbrörlig PH______2__position: <strong>Fokalpunkter</strong>: Korrelerar nyhetsenheter med kartsignaler (militär, protester, avbrott)<br><em>Endast skrivbord • Drivs av Llama 3.3 + Focal Point Detection</em>",
+      "infoTooltip": "<strong>AI-driven analys</strong><br>• <strong>World Brief</strong>: AI-sammanfattning (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: Nyhetstonanalys<br>• <strong>__2__hastighet: snabbrörlig PH______2__position: <strong>Fokalpunkter</strong>: Korrelerar nyhetsenheter med kartsignaler (militär, protester, avbrott)",
       "noStories": "Inga breaking- eller flerkällshistorier ännu",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
@@ -1009,13 +939,9 @@
     "export": {
       "exportData": "Exportera data"
     },
-    "runtimeConfig": {
-      "getApiKey": "Hämta API-nyckel"
-    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1026,10 +952,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

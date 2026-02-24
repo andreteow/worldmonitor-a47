@@ -250,76 +250,6 @@
       "dontShowAgain": "今後表示しない",
       "gotIt": "了解"
     },
-    "downloadBanner": {
-      "title": "デスクトップ版あり",
-      "description": "ネイティブパフォーマンス、安全なローカルキー保存、オフラインマップタイル。",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "全プラットフォームを表示",
-      "showLess": "折りたたむ",
-      "dismiss": "閉じる"
-    },
-    "runtimeConfig": {
-      "title": "デスクトップ設定",
-      "alertTitle": {
-        "configured": "デスクトップ設定が構成済",
-        "needsKeys": "機能を有効にするためAPIキーを設定してください",
-        "some": "一部の機能にAPIキーが必要"
-      },
-      "openSettings": "設定を開く",
-      "summary": {
-        "desktop": "デスクトップモード",
-        "web": "Webモード（読み取り専用、サーバー管理の認証情報）",
-        "secrets": "ローカルシークレット設定済",
-        "available": "利用可能な機能"
-      },
-      "status": {
-        "ready": "準備完了",
-        "staged": "ステージ済",
-        "needsKeys": "キーが必要",
-        "invalid": "無効",
-        "missing": "未設定",
-        "valid": "有効",
-        "looksInvalid": "無効の可能性"
-      },
-      "placeholder": {
-        "setSecret": "シークレットを設定",
-        "staged": "ステージ済（OKで保存）"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "URLhausとThreatFox APIの両方で使用。",
-        "OTX_API_KEY": "サイバー脅威レイヤーのオプション追加ソース。",
-        "ABUSEIPDB_API_KEY": "悪意あるIPレピュテーションのオプション追加ソース。",
-        "FINNHUB_API_KEY": "リアルタイム株価・市場データ。",
-        "NASA_FIRMS_API_KEY": "Fire Information for Resource Management System。",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
-    "settingsWindow": {
-      "validating": "APIキーを検証中...",
-      "saved": "設定を保存済",
-      "failed": "保存失敗: {{error}}",
-      "verifyFailed": "検証済キーを保存。失敗: {{errors}}",
-      "verboseOn": "詳細サイドカーログ ON（保存済）",
-      "verboseOff": "詳細サイドカーログ OFF（保存済）",
-      "invokeFail": "{{command}}の実行に失敗。デスクトップログを確認してください。",
-      "openLogs": "ログフォルダを開いた",
-      "openApiLog": "APIログを開いた",
-      "sidecarError": "詳細モード切替のためサイドカーに接続できない",
-      "noTraffic": "まだトラフィックが記録されていない。",
-      "sidecarUnreachable": "サイドカーに接続不能。",
-      "logCleared": "ログをクリア済。",
-      "table": {
-        "time": "時刻",
-        "method": "メソッド",
-        "path": "パス",
-        "status": "ステータス",
-        "duration": "所要時間"
-      }
-    },
     "countryIntel": {
       "identifying": "国を特定中...",
       "locating": "地域を特定中...",
@@ -805,7 +735,7 @@
     },
     "insights": {
       "noStories": "速報またはマルチソースストーリーはまだなし",
-      "infoTooltip": "<strong>AI分析</strong><br>• <strong>世界ブリーフ</strong>: AI要約（Groq/OpenRouter）<br>• <strong>センチメント</strong>: ニュースのトーン分析<br>• <strong>速度</strong>: 急速に広がるストーリー<br>• <strong>焦点</strong>: ニュースエンティティとマップシグナル（軍事、抗議、障害）を相関<br><em>デスクトップ版のみ・Llama 3.3 + 焦点検出搭載</em>",
+      "infoTooltip": "<strong>AI分析</strong><br>• <strong>世界ブリーフ</strong>: AI要約（Groq/OpenRouter）<br>• <strong>センチメント</strong>: ニュースのトーン分析<br>• <strong>速度</strong>: 急速に広がるストーリー<br>• <strong>焦点</strong>: ニュースエンティティとマップシグナル（軍事、抗議、障害）を相関",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -987,9 +917,6 @@
     "export": {
       "exportData": "データをエクスポート"
     },
-    "runtimeConfig": {
-      "getApiKey": "APIキーを取得"
-    },
     "intelligenceFindings": {
       "badgeTitle": "インテリジェンス所見",
       "title": "インテリジェンス所見",
@@ -1107,8 +1034,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1119,10 +1045,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

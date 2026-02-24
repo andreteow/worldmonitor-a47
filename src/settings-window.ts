@@ -7,14 +7,10 @@ import { DEFAULT_PANELS, STORAGE_KEYS } from '@/config';
 import { loadFromStorage, saveToStorage, isMobileDevice } from '@/utils';
 import { t } from '@/services/i18n';
 import { escapeHtml } from '@/utils/sanitize';
-import { isDesktopRuntime } from '@/services/runtime';
 
 const INTEL_FINDINGS_KEY = 'worldmonitor-intel-findings';
 
 function getLocalizedPanelName(panelKey: string, fallback: string): string {
-  if (panelKey === 'runtime-config') {
-    return t('modals.runtimeConfig.title');
-  }
   const key = panelKey.replace(/-([a-z])/g, (_match, group: string) => group.toUpperCase());
   const lookup = `panels.${key}`;
   const localized = t(lookup);
@@ -33,7 +29,6 @@ export function initSettingsWindow(): void {
     DEFAULT_PANELS
   );
 
-  const isDesktopApp = isDesktopRuntime();
   const isMobile = isMobileDevice();
 
   function getFindingsEnabled(): boolean {
@@ -50,7 +45,7 @@ export function initSettingsWindow(): void {
 
   function render(): void {
     const panelEntries = Object.entries(panelSettings).filter(
-      ([key]) => key !== 'runtime-config' || isDesktopApp
+      ([key]) => key !== 'runtime-config'
     );
     const panelHtml = panelEntries
       .map(

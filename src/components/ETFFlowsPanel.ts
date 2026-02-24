@@ -34,7 +34,7 @@ export class ETFFlowsPanel extends Panel {
   constructor() {
     super({ id: 'etf-flows', title: t('panels.etfFlows'), showCount: false });
     // Delay initial fetch by 8s to avoid competing with stock/commodity Yahoo calls
-    // during cold start — all share a global yahooGate() rate limiter on the sidecar
+    // during cold start — all share a global yahooGate() rate limiter
     setTimeout(() => void this.fetchData(), 8_000);
     this.refreshInterval = setInterval(() => this.fetchData(), 3 * 60000);
   }

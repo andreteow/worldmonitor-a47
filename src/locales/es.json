@@ -249,54 +249,6 @@
       "dontShowAgain": "No volver a mostrar",
       "gotIt": "Entiendo"
     },
-    "downloadBanner": {
-      "title": "Escritorio disponible",
-      "description": "Rendimiento nativo, almacenamiento de claves local seguro, mosaicos de mapas sin conexión.",
-      "macSilicon": "macOS (Apple Silicio)",
-      "macIntel": "MacOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "dismiss": "Despedir",
-      "showAllPlatforms": "Mostrar todas las plataformas",
-      "showLess": "Mostrar menos"
-    },
-    "runtimeConfig": {
-      "title": "Configuración de escritorio",
-      "alertTitle": {
-        "configured": "Configuraciones de escritorio configuradas",
-        "needsKeys": "Configurar claves API para desbloquear funciones",
-        "some": "Algunas funciones necesitan claves API"
-      },
-      "openSettings": "Abrir configuración",
-      "summary": {
-        "desktop": "Modo escritorio",
-        "web": "Modo web (credenciales administradas por el servidor de solo lectura)",
-        "secrets": "secretos locales configurados",
-        "available": "características disponibles"
-      },
-      "status": {
-        "ready": "Listo",
-        "staged": "Escenificado",
-        "needsKeys": "Necesita llaves",
-        "invalid": "Inválido",
-        "missing": "Desaparecido",
-        "valid": "Válido",
-        "looksInvalid": "Parece inválido"
-      },
-      "placeholder": {
-        "setSecret": "Establecer secreto",
-        "staged": "Preparado (guardar con OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Se utiliza para las APIs de URLhaus y ThreatFox.",
-        "OTX_API_KEY": "Fuente de enriquecimiento opcional para la capa de ciberamenazas.",
-        "ABUSEIPDB_API_KEY": "Fuente de enriquecimiento opcional para reputación de IPs maliciosas.",
-        "FINNHUB_API_KEY": "Cotizaciones bursátiles en tiempo real y datos de mercado.",
-        "NASA_FIRMS_API_KEY": "Sistema de detección de incendios para gestión de recursos.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
     "countryIntel": {
       "identifying": "Identificando el país...",
       "locating": "Localizando región...",
@@ -386,28 +338,6 @@
         "stockIndex": "Índice bursátil: {{value}}",
         "recentHeadlines": "**Titulares recientes:**"
       }
-    },
-    "settingsWindow": {
-      "invokeFail": "No se pudo ejecutar {{command}}. Verifique el registro del escritorio.",
-      "validating": "Validando claves API...",
-      "verifyFailed": "Claves verificadas guardadas. Error: {{errors}}",
-      "saved": "Configuración guardada",
-      "failed": "Error al guardar: {{error}}",
-      "openLogs": "Carpeta de registros abierta",
-      "openApiLog": "Registro de API abierto",
-      "verboseOn": "Inicio de sesión detallado en sidecar activado (guardado)",
-      "verboseOff": "Cierre de sesión detallado en sidecar (guardado)",
-      "sidecarError": "No se pudo alcanzar el sidecar para alternar el modo detallado",
-      "noTraffic": "Aún no se ha registrado tráfico.",
-      "table": {
-        "time": "Tiempo",
-        "method": "Método",
-        "path": "Camino",
-        "status": "Estado",
-        "duration": "Duración"
-      },
-      "sidecarUnreachable": "Sidecar no accesible.",
-      "logCleared": "Registro borrado."
     }
   },
   "components": {
@@ -1058,7 +988,7 @@
     },
     "insights": {
       "noStories": "Aún no hay noticias de última hora o de múltiples fuentes",
-      "infoTooltip": "<strong>Análisis impulsado por IA</strong><br>• <strong>Resumen mundial</strong>: Resumen de IA (Groq/OpenRouter)<br>• <strong>Sentimento</strong>: Análisis del tono de las noticias<br>• <strong>Velocity</strong>: Historias de rápido movimiento<br>• <strong>Focal Puntos</strong>: Correlaciona entidades de noticias con señales de mapas (militares, protestas, cortes)<br><em>Solo escritorio • Desarrollado por Llama 3.3 + Detección de puntos focales</em>",
+      "infoTooltip": "<strong>Análisis impulsado por IA</strong><br>• <strong>Resumen mundial</strong>: Resumen de IA (Groq/OpenRouter)<br>• <strong>Sentimento</strong>: Análisis del tono de las noticias<br>• <strong>Velocity</strong>: Historias de rápido movimiento<br>• <strong>Focal Puntos</strong>: Correlaciona entidades de noticias con señales de mapas (militares, protestas, cortes)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -1101,13 +1031,9 @@
         "fearGreed": "Miedo &amp; Codicia"
       }
     },
-    "runtimeConfig": {
-      "getApiKey": "Obtener clave API"
-    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

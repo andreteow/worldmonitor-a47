@@ -249,76 +249,6 @@
       "dontShowAgain": "ไม่แสดงอีก",
       "gotIt": "เข้าใจแล้ว"
     },
-    "downloadBanner": {
-      "title": "มีแอปเดสก์ท็อป",
-      "description": "ประสิทธิภาพระดับเนทีฟ, การจัดเก็บคีย์ในเครื่องที่ปลอดภัย, ไทล์แผนที่ออฟไลน์",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "แสดงทุกแพลตฟอร์ม",
-      "showLess": "แสดงน้อยลง",
-      "dismiss": "ปิด"
-    },
-    "runtimeConfig": {
-      "title": "การกำหนดค่าเดสก์ท็อป",
-      "alertTitle": {
-        "configured": "ตั้งค่าเดสก์ท็อปแล้ว",
-        "needsKeys": "กรุณาตั้งค่า API key เพื่อปลดล็อกฟีเจอร์",
-        "some": "บางฟีเจอร์ต้องการ API key"
-      },
-      "openSettings": "เปิดการตั้งค่า",
-      "summary": {
-        "desktop": "โหมดเดสก์ท็อป",
-        "web": "โหมดเว็บ (อ่านอย่างเดียว, ข้อมูลรับรองจากเซิร์ฟเวอร์)",
-        "secrets": "ข้อมูลลับในเครื่องที่ตั้งค่าแล้ว",
-        "available": "ฟีเจอร์ที่พร้อมใช้งาน"
-      },
-      "status": {
-        "ready": "พร้อม",
-        "staged": "จัดเตรียมแล้ว",
-        "needsKeys": "ต้องการ Key",
-        "invalid": "ไม่ถูกต้อง",
-        "missing": "ขาดหาย",
-        "valid": "ถูกต้อง",
-        "looksInvalid": "ดูเหมือนไม่ถูกต้อง"
-      },
-      "placeholder": {
-        "setSecret": "ตั้งค่าข้อมูลลับ",
-        "staged": "จัดเตรียมแล้ว (บันทึกด้วย OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "ใช้สำหรับทั้ง URLhaus และ ThreatFox API",
-        "OTX_API_KEY": "แหล่งเสริมทางเลือกสำหรับเลเยอร์ภัยคุกคามไซเบอร์",
-        "ABUSEIPDB_API_KEY": "แหล่งเสริมทางเลือกสำหรับชื่อเสียง IP ที่เป็นอันตราย",
-        "FINNHUB_API_KEY": "ราคาหุ้นเรียลไทม์และข้อมูลตลาด",
-        "NASA_FIRMS_API_KEY": "ระบบข้อมูลไฟสำหรับการจัดการทรัพยากร",
-        "OLLAMA_API_URL": "เช่น http://127.0.0.1:11434 (Ollama) หรือ http://127.0.0.1:1234/v1 (LM Studio) — จุดปลายทางที่เข้ากันได้กับ OpenAI",
-        "OLLAMA_MODEL": "เช่น llama3.1:8b — แท็กโมเดลที่ใช้สำหรับการสรุป"
-      }
-    },
-    "settingsWindow": {
-      "validating": "กำลังตรวจสอบ API key...",
-      "saved": "บันทึกการตั้งค่าแล้ว",
-      "failed": "บันทึกล้มเหลว: {{error}}",
-      "verifyFailed": "บันทึก key ที่ตรวจสอบแล้ว ล้มเหลว: {{errors}}",
-      "verboseOn": "เปิดการบันทึกรายละเอียด sidecar แล้ว (บันทึกแล้ว)",
-      "verboseOff": "ปิดการบันทึกรายละเอียด sidecar แล้ว (บันทึกแล้ว)",
-      "invokeFail": "ไม่สามารถเรียกใช้ {{command}} ได้ ตรวจสอบบันทึกเดสก์ท็อป",
-      "openLogs": "เปิดโฟลเดอร์บันทึกแล้ว",
-      "openApiLog": "เปิดบันทึก API แล้ว",
-      "sidecarError": "ไม่สามารถเชื่อมต่อ sidecar เพื่อสลับโหมด verbose",
-      "noTraffic": "ยังไม่มีทราฟฟิกที่บันทึกไว้",
-      "sidecarUnreachable": "ไม่สามารถเชื่อมต่อ Sidecar ได้",
-      "logCleared": "ล้างบันทึกแล้ว",
-      "table": {
-        "time": "เวลา",
-        "method": "เมธอด",
-        "path": "เส้นทาง",
-        "status": "สถานะ",
-        "duration": "ระยะเวลา"
-      }
-    },
     "countryIntel": {
       "identifying": "กำลังระบุประเทศ...",
       "locating": "กำลังค้นหาภูมิภาค...",
@@ -809,7 +739,7 @@
       "rankingStories": "กำลังจัดอันดับเรื่องราวสำคัญ...",
       "analyzingSentiment": "กำลังวิเคราะห์ความรู้สึก...",
       "generatingBrief": "กำลังสร้างสรุปสถานการณ์โลก...",
-      "infoTooltip": "<strong>การวิเคราะห์ด้วย AI</strong><br>• <strong>สรุปโลก</strong>: สรุปจาก AI (Groq/OpenRouter)<br>• <strong>ความรู้สึก</strong>: การวิเคราะห์น้ำเสียงข่าว<br>• <strong>ความเร็ว</strong>: เรื่องราวที่เคลื่อนไหวเร็ว<br>• <strong>จุดโฟกัส</strong>: เชื่อมโยงเอนทิตีข่าวกับสัญญาณแผนที่ (ทหาร, การประท้วง, การหยุดชะงัก)<br><em>เดสก์ท็อปเท่านั้น • ขับเคลื่อนด้วย Llama 3.3 + การตรวจจับจุดโฟกัส</em>"
+      "infoTooltip": "<strong>การวิเคราะห์ด้วย AI</strong><br>• <strong>สรุปโลก</strong>: สรุปจาก AI (Groq/OpenRouter)<br>• <strong>ความรู้สึก</strong>: การวิเคราะห์น้ำเสียงข่าว<br>• <strong>ความเร็ว</strong>: เรื่องราวที่เคลื่อนไหวเร็ว<br>• <strong>จุดโฟกัส</strong>: เชื่อมโยงเอนทิตีข่าวกับสัญญาณแผนที่ (ทหาร, การประท้วง, การหยุดชะงัก)"
     },
     "cascade": {
       "noImpacts": "ไม่พบผลกระทบต่อประเทศ",
@@ -986,9 +916,6 @@
     "export": {
       "exportData": "ส่งออกข้อมูล"
     },
-    "runtimeConfig": {
-      "getApiKey": "รับ API key"
-    },
     "intelligenceFindings": {
       "hideFindings": "ซ่อนผลการตรวจสอบข่าวกรอง",
       "badgeTitle": "ผลการตรวจสอบข่าวกรอง",
@@ -1106,8 +1033,7 @@
     },
     "panel": {
       "showMethodologyInfo": "แสดงข้อมูลวิธีการ",
-      "dragToResize": "ลากเพื่อปรับขนาด (ดับเบิลคลิกเพื่อรีเซ็ต)",
-      "openSettings": "เปิดการตั้งค่า"
+      "dragToResize": "ลากเพื่อปรับขนาด (ดับเบิลคลิกเพื่อรีเซ็ต)"
     },
     "languageSelector": {
       "selectLanguage": "เลือกภาษา"
@@ -1118,10 +1044,6 @@
       "ok": "ปกติ",
       "degraded": "ลดประสิทธิภาพ",
       "outage": "หยุดทำงาน",
-      "backendUnavailable": "แบ็กเอนด์เดสก์ท็อปไม่พร้อมใช้งาน ใช้ API คลาวด์แทน",
-      "desktopReadiness": "ความพร้อมเดสก์ท็อป",
-      "acceptanceChecks": "การตรวจสอบความพร้อม: {{ready}}/{{total}} พร้อม · ฟีเจอร์ที่ต้องใช้ key {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "ทางเลือกที่ไม่เท่าเทียม ({{count}})",
       "categories": {
         "all": "ทั้งหมด",
         "cloud": "คลาวด์",

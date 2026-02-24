@@ -35,7 +35,6 @@ import { enrichEventsWithExposure } from '@/services/population-exposure';
 import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice, setTheme, getCurrentTheme } from '@/utils';
 import { reverseGeocode } from '@/utils/reverse-geocode';
 import { CountryBriefPage } from '@/components/CountryBriefPage';
-import { maybeShowDownloadBanner } from '@/components/DownloadBanner';
 import { mountCommunityWidget } from '@/components/CommunityWidget';
 import { CountryTimeline, type TimelineEvent } from '@/components/CountryTimeline';
 import { escapeHtml } from '@/utils/sanitize';
@@ -69,7 +68,6 @@ import {
   IntelligenceGapBadge,
   TechEventsPanel,
   ServiceStatusPanel,
-  RuntimeConfigPanel,
   InsightsPanel,
   TechReadinessPanel,
   MacroSignalsPanel,
@@ -96,12 +94,10 @@ import { AI_RESEARCH_LABS } from '@/config/ai-research-labs';
 import { STARTUP_ECOSYSTEMS } from '@/config/startup-ecosystems';
 import { TECH_HQS, ACCELERATORS } from '@/config/tech-geo';
 import { STOCK_EXCHANGES, FINANCIAL_CENTERS, CENTRAL_BANKS, COMMODITY_HUBS } from '@/config/finance-geo';
-import { isDesktopRuntime } from '@/services/runtime';
 import { IntelligenceServiceClient } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
 import { ResearchServiceClient } from '@/generated/client/worldmonitor/research/v1/service_client';
 import { isFeatureAvailable } from '@/services/runtime-config';
-import { trackEvent, trackPanelView, trackVariantSwitch, trackThemeChanged, trackMapViewChange, trackMapLayerToggle, trackCountrySelected, trackCountryBriefOpened, trackSearchResultSelected, trackPanelToggled, trackUpdateShown, trackUpdateClicked, trackUpdateDismissed, trackCriticalBannerAction, trackDeeplinkOpened } from '@/services/analytics';
-import { invokeTauri } from '@/services/tauri-bridge';
+import { trackEvent, trackPanelView, trackThemeChanged, trackMapViewChange, trackMapLayerToggle, trackCountrySelected, trackCountryBriefOpened, trackSearchResultSelected, trackPanelToggled, trackUpdateShown, trackUpdateClicked, trackUpdateDismissed, trackCriticalBannerAction, trackDeeplinkOpened } from '@/services/analytics';
 import { getCountryAtCoordinates, hasCountryGeometry, isCoordinateInCountry, preloadCountryGeometry } from '@/services/country-geometry';
 import { initI18n, t, changeLanguage } from '@/services/i18n';
 
@@ -113,20 +109,9 @@ type IntlDisplayNamesCtor = new (
   options: { type: 'region' }
 ) => { of: (code: string) => string | undefined };
 
-interface DesktopRuntimeInfo {
-  os: string;
-  arch: string;
-}
-
 type UpdaterOutcome = 'no_update' | 'update_available' | 'open_failed' | 'fetch_failed';
-type DesktopBuildVariant = 'full' | 'tech' | 'finance';
 
 const CYBER_LAYER_ENABLED = import.meta.env.VITE_ENABLE_CYBER_LAYER === 'true';
-const DESKTOP_BUILD_VARIANT: DesktopBuildVariant = (
-  import.meta.env.VITE_VARIANT === 'tech' || import.meta.env.VITE_VARIANT === 'finance'
-    ? import.meta.env.VITE_VARIANT
-    : 'full'
-);
 
 export interface CountryBriefSignals {
   protests: number;
@@ -181,7 +166,6 @@ export class App {
   private boundFullscreenHandler: (() => void) | null = null;
   private boundResizeHandler: (() => void) | null = null;
   private boundVisibilityHandler: (() => void) | null = null;
-  private boundDesktopExternalLinkHandler: ((e: MouseEvent) => void) | null = null;
   private idleTimeoutId: ReturnType<typeof setTimeout> | null = null;
   private boundIdleResetHandler: (() => void) | null = null;
   private isIdle = false;
@@ -196,7 +180,6 @@ export class App {
   private findingsBadge: IntelligenceGapBadge | null = null;
   private pendingDeepLinkCountry: string | null = null;
   private briefRequestToken = 0;
-  private readonly isDesktopApp = isDesktopRuntime();
   private readonly UPDATE_CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000; // 6 hours
   private updateCheckIntervalId: ReturnType<typeof setInterval> | null = null;
   private clockIntervalId: ReturnType<typeof setInterval> | null = null;
@@ -300,18 +283,6 @@ export class App {
         console.log('[App] Applied layout reset migration (v2.5): cleared panel order/spans');
       }
       localStorage.setItem(LAYOUT_RESET_MIGRATION_KEY, 'done');
-    }
-
-    // Desktop key management panel must always remain accessible in Tauri.
-    if (this.isDesktopApp) {
-      const runtimePanel = this.panelSettings['runtime-config'] ?? {
-        name: 'Desktop Configuration',
-        enabled: true,
-        priority: 2,
-      };
-      runtimePanel.enabled = true;
-      this.panelSettings['runtime-config'] = runtimePanel;
-      saveToStorage(STORAGE_KEYS.panels, this.panelSettings);
     }
 
     this.initialUrlState = parseMapUrlState(window.location.search, this.mapLayers);
@@ -509,7 +480,7 @@ export class App {
   }
 
   private setupUpdateChecks(): void {
-    if (!this.isDesktopApp || this.isDestroyed) return;
+    if (this.isDestroyed) return;
 
     // Run once shortly after startup, then poll every 6 hours.
     setTimeout(() => {
@@ -531,10 +502,6 @@ export class App {
       ? console.warn
       : console.info;
     logger('[updater]', outcome, context);
-  }
-
-  private getDesktopBuildVariant(): DesktopBuildVariant {
-    return DESKTOP_BUILD_VARIANT;
   }
 
   private async checkForUpdate(): Promise<void> {
@@ -588,40 +555,6 @@ export class App {
     return false;
   }
 
-  private mapDesktopDownloadPlatform(os: string, arch: string): string | null {
-    const normalizedOs = os.toLowerCase();
-    const normalizedArch = arch.toLowerCase()
-      .replace('amd64', 'x86_64')
-      .replace('x64', 'x86_64')
-      .replace('arm64', 'aarch64');
-
-    if (normalizedOs === 'windows') {
-      return normalizedArch === 'x86_64' ? 'windows-exe' : null;
-    }
-
-    if (normalizedOs === 'macos' || normalizedOs === 'darwin') {
-      if (normalizedArch === 'aarch64') return 'macos-arm64';
-      if (normalizedArch === 'x86_64') return 'macos-x64';
-      return null;
-    }
-
-    return null;
-  }
-
-  private async resolveUpdateDownloadUrl(releaseUrl: string): Promise<string> {
-    try {
-      const runtimeInfo = await invokeTauri<DesktopRuntimeInfo>('get_desktop_runtime_info');
-      const platform = this.mapDesktopDownloadPlatform(runtimeInfo.os, runtimeInfo.arch);
-      if (platform) {
-        const variant = this.getDesktopBuildVariant();
-        return `https://worldmonitor.app/api/download?platform=${platform}&variant=${variant}`;
-      }
-    } catch {
-      // Silent fallback to release page when desktop runtime info is unavailable.
-    }
-    return releaseUrl;
-  }
-
   private async showUpdateBadge(version: string, releaseUrl: string): Promise<void> {
     const versionSpan = this.container.querySelector('.version');
     if (!versionSpan) return;
@@ -629,29 +562,17 @@ export class App {
     if (existingBadge?.dataset.version === version) return;
     existingBadge?.remove();
 
-    const url = await this.resolveUpdateDownloadUrl(releaseUrl);
-
     const badge = document.createElement('a');
     badge.className = 'update-badge';
     badge.dataset.version = version;
-    badge.href = url;
-    badge.target = this.isDesktopApp ? '_self' : '_blank';
+    badge.href = releaseUrl;
+    badge.target = '_blank';
     badge.rel = 'noopener';
     badge.textContent = `UPDATE v${version}`;
     badge.addEventListener('click', (e) => {
       e.preventDefault();
       trackUpdateClicked(version);
-      if (this.isDesktopApp) {
-        void invokeTauri<void>('open_url', { url }).catch((error) => {
-          this.logUpdaterOutcome('open_failed', {
-            url,
-            error: error instanceof Error ? error.message : String(error),
-          });
-          window.open(url, '_blank', 'noopener');
-        });
-        return;
-      }
-      window.open(url, '_blank', 'noopener');
+      window.open(releaseUrl, '_blank', 'noopener');
     });
 
     const dismiss = document.createElement('span');
@@ -1836,28 +1757,28 @@ export class App {
       <div class="header">
         <div class="header-left">
           <div class="variant-switcher">
-            <a href="${this.isDesktopApp ? '#' : (SITE_VARIANT === 'full' ? '#' : 'https://worldmonitor.app')}"
+            <a href="${SITE_VARIANT === 'full' ? '#' : 'https://worldmonitor.app'}"
                class="variant-option ${SITE_VARIANT === 'full' ? 'active' : ''}"
                data-variant="full"
-               ${!this.isDesktopApp && SITE_VARIANT !== 'full' ? 'target="_blank" rel="noopener"' : ''}
+               ${SITE_VARIANT !== 'full' ? 'target="_blank" rel="noopener"' : ''}
                title="${t('header.world')}${SITE_VARIANT === 'full' ? ` ${t('common.currentVariant')}` : ''}">
               <span class="variant-icon">🌍</span>
               <span class="variant-label">${t('header.world')}</span>
             </a>
             <span class="variant-divider"></span>
-            <a href="${this.isDesktopApp ? '#' : (SITE_VARIANT === 'tech' ? '#' : 'https://tech.worldmonitor.app')}"
+            <a href="${SITE_VARIANT === 'tech' ? '#' : 'https://tech.worldmonitor.app'}"
                class="variant-option ${SITE_VARIANT === 'tech' ? 'active' : ''}"
                data-variant="tech"
-               ${!this.isDesktopApp && SITE_VARIANT !== 'tech' ? 'target="_blank" rel="noopener"' : ''}
+               ${SITE_VARIANT !== 'tech' ? 'target="_blank" rel="noopener"' : ''}
                title="${t('header.tech')}${SITE_VARIANT === 'tech' ? ` ${t('common.currentVariant')}` : ''}">
               <span class="variant-icon">💻</span>
               <span class="variant-label">${t('header.tech')}</span>
             </a>
             <span class="variant-divider"></span>
-            <a href="${this.isDesktopApp ? '#' : (SITE_VARIANT === 'finance' ? '#' : 'https://finance.worldmonitor.app')}"
+            <a href="${SITE_VARIANT === 'finance' ? '#' : 'https://finance.worldmonitor.app'}"
                class="variant-option ${SITE_VARIANT === 'finance' ? 'active' : ''}"
                data-variant="finance"
-               ${!this.isDesktopApp && SITE_VARIANT !== 'finance' ? 'target="_blank" rel="noopener"' : ''}
+               ${SITE_VARIANT !== 'finance' ? 'target="_blank" rel="noopener"' : ''}
                title="${t('header.finance')}${SITE_VARIANT === 'finance' ? ` ${t('common.currentVariant')}` : ''}">
               <span class="variant-icon">📈</span>
               <span class="variant-label">${t('header.finance')}</span>
@@ -1890,13 +1811,13 @@ export class App {
         </div>
         <div class="header-right">
           <button class="search-btn" id="searchBtn"><kbd>⌘K</kbd> ${t('header.search')}</button>
-          ${this.isDesktopApp ? '' : `<button class="copy-link-btn" id="copyLinkBtn">${t('header.copyLink')}</button>`}
+          <button class="copy-link-btn" id="copyLinkBtn">${t('header.copyLink')}</button>
           <button class="theme-toggle-btn" id="headerThemeToggle" title="${t('header.toggleTheme')}">
             ${getCurrentTheme() === 'dark'
         ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
         : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'}
           </button>
-          ${this.isDesktopApp ? '' : `<button class="fullscreen-btn" id="fullscreenBtn" title="${t('header.fullscreen')}">⛶</button>`}
+          <button class="fullscreen-btn" id="fullscreenBtn" title="${t('header.fullscreen')}">⛶</button>
           <button class="settings-btn" id="settingsBtn">⚙ ${t('header.settings')}</button>
           <button class="sources-btn" id="sourcesBtn">📡 ${t('header.sources')}</button>
         </div>
@@ -2073,11 +1994,6 @@ export class App {
       document.removeEventListener('visibilitychange', this.boundVisibilityHandler);
       this.boundVisibilityHandler = null;
     }
-    if (this.boundDesktopExternalLinkHandler) {
-      document.removeEventListener('click', this.boundDesktopExternalLinkHandler, true);
-      this.boundDesktopExternalLinkHandler = null;
-    }
-
     // Clean up idle detection
     if (this.idleTimeoutId) {
       clearTimeout(this.idleTimeoutId);
@@ -2371,11 +2287,6 @@ export class App {
     const serviceStatusPanel = new ServiceStatusPanel();
     this.panels['service-status'] = serviceStatusPanel;
 
-    if (this.isDesktopApp) {
-      const runtimeConfigPanel = new RuntimeConfigPanel({ mode: 'alert' });
-      this.panels['runtime-config'] = runtimeConfigPanel;
-    }
-
     // Tech Readiness Panel (tech variant only - World Bank tech indicators)
     const techReadinessPanel = new TechReadinessPanel();
     this.panels['tech-readiness'] = techReadinessPanel;
@@ -2424,17 +2335,6 @@ export class App {
       panelOrder.splice(webcamsIdx, 1);
       const afterNews = panelOrder.indexOf('live-news') + 1;
       panelOrder.splice(afterNews, 0, 'live-webcams');
-    }
-
-    // Desktop configuration should stay easy to reach in Tauri builds.
-    if (this.isDesktopApp) {
-      const runtimeIdx = panelOrder.indexOf('runtime-config');
-      if (runtimeIdx > 1) {
-        panelOrder.splice(runtimeIdx, 1);
-        panelOrder.splice(1, 0, 'runtime-config');
-      } else if (runtimeIdx === -1) {
-        panelOrder.splice(1, 0, 'runtime-config');
-      }
     }
 
     panelOrder.forEach((key: string) => {
@@ -2741,24 +2641,9 @@ export class App {
     // Sources modal
     this.setupSourcesModal();
 
-    // Variant switcher: switch variant locally on desktop (reload with new config)
-    if (this.isDesktopApp) {
-      this.container.querySelectorAll<HTMLAnchorElement>('.variant-option').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const variant = link.dataset.variant;
-          if (variant && variant !== SITE_VARIANT) {
-            e.preventDefault();
-            trackVariantSwitch(SITE_VARIANT, variant);
-            localStorage.setItem('worldmonitor-variant', variant);
-            window.location.reload();
-          }
-        });
-      });
-    }
-
     // Fullscreen toggle
     const fullscreenBtn = document.getElementById('fullscreenBtn');
-    if (!this.isDesktopApp && fullscreenBtn) {
+    if (fullscreenBtn) {
       fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
       this.boundFullscreenHandler = () => {
         fullscreenBtn.textContent = document.fullscreenElement ? '⛶' : '⛶';
@@ -2816,31 +2701,6 @@ export class App {
       this.map?.render();
       this.updateHeaderThemeIcon();
     });
-
-    // Desktop: intercept external link clicks and open in system browser.
-    // Tauri WKWebView/WebView2 traps target="_blank" — links don't open otherwise.
-    if (this.isDesktopApp) {
-      if (this.boundDesktopExternalLinkHandler) {
-        document.removeEventListener('click', this.boundDesktopExternalLinkHandler, true);
-      }
-      this.boundDesktopExternalLinkHandler = (e: MouseEvent) => {
-        if (!(e.target instanceof Element)) return;
-        const anchor = e.target.closest('a[href]') as HTMLAnchorElement | null;
-        if (!anchor) return;
-        const href = anchor.href;
-        if (!href || href.startsWith('javascript:') || href === '#' || href.startsWith('#')) return;
-        try {
-          const url = new URL(href, window.location.href);
-          if (url.origin === window.location.origin) return;
-          e.preventDefault();
-          e.stopPropagation();
-          void invokeTauri<void>('open_url', { url: url.toString() }).catch(() => {
-            window.open(url.toString(), '_blank');
-          });
-        } catch { /* malformed URL — let browser handle */ }
-      };
-      document.addEventListener('click', this.boundDesktopExternalLinkHandler, true);
-    }
 
     // Idle detection - pause animations after 2 minutes of inactivity
     this.setupIdleDetection();
@@ -3031,7 +2891,7 @@ export class App {
   private renderPanelToggles(): void {
     const container = document.getElementById('panelToggles')!;
     const panelHtml = Object.entries(this.panelSettings)
-      .filter(([key]) => key !== 'runtime-config' || this.isDesktopApp)
+      .filter(([key]) => key !== 'runtime-config')
       .map(
         ([key, panel]) => `
         <div class="panel-toggle-item ${panel.enabled ? 'active' : ''}" data-panel="${key}">
@@ -3085,9 +2945,6 @@ export class App {
   }
 
   private getLocalizedPanelName(panelKey: string, fallback: string): string {
-    if (panelKey === 'runtime-config') {
-      return t('modals.runtimeConfig.title');
-    }
     const key = panelKey.replace(/-([a-z])/g, (_match, group: string) => group.toUpperCase());
     const lookup = `panels.${key}`;
     const localized = t(lookup);
@@ -3586,7 +3443,6 @@ export class App {
 
     this.allNews = collectedNews;
     this.initialLoadComplete = true;
-    maybeShowDownloadBanner();
     mountCommunityWidget();
     // Temporal baseline: report news volume
     updateAndCheck([
@@ -4014,7 +3870,7 @@ export class App {
     tasks.push((async () => {
       try {
         const protestEvents = await protestsTask;
-        // Retry up to 3 times — UCDP sidecar can return empty on cold start
+        // Retry up to 3 times — UCDP API can return empty on cold start
         let result = await fetchUcdpEvents();
         for (let attempt = 1; attempt < 3 && !result.success; attempt++) {
           await new Promise(r => setTimeout(r, 15_000));

@@ -249,103 +249,6 @@
       "dontShowAgain": "Να μην εμφανιστεί ξανά",
       "gotIt": "Κατάλαβα"
     },
-    "downloadBanner": {
-      "title": "Διαθέσιμη Εφαρμογή Desktop",
-      "description": "Εγγενής απόδοση, ασφαλής τοπική αποθήκευση κλειδιών, offline πλακίδια χάρτη.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "Εμφάνιση όλων των πλατφορμών",
-      "showLess": "Εμφάνιση λιγότερων",
-      "dismiss": "Απόρριψη"
-    },
-    "runtimeConfig": {
-      "title": "Ρύθμιση Desktop",
-      "alertTitle": {
-        "configured": "Ρυθμίσεις desktop διαμορφώθηκαν",
-        "needsKeys": "Ρυθμίστε API keys για ξεκλείδωμα λειτουργιών",
-        "some": "Ορισμένες λειτουργίες χρειάζονται API keys"
-      },
-      "openSettings": "Άνοιγμα Ρυθμίσεων",
-      "skipSetup": "Παραλείψτε τη ρύθμιση — μία μόνο άδεια World Monitor ξεκλειδώνει τα πάντα. Γραφτείτε στη λίστα αναμονής για πρώιμη πρόσβαση.",
-      "summary": {
-        "desktop": "Λειτουργία desktop",
-        "web": "Λειτουργία web (μόνο ανάγνωση, διαχειριζόμενα διαπιστευτήρια)",
-        "secrets": "τοπικά μυστικά διαμορφώθηκαν",
-        "available": "διαθέσιμες λειτουργίες"
-      },
-      "status": {
-        "ready": "Έτοιμο",
-        "staged": "Σε αναμονή",
-        "needsKeys": "Χρειάζεται Keys",
-        "invalid": "Μη έγκυρο",
-        "missing": "Λείπει",
-        "valid": "Έγκυρο",
-        "looksInvalid": "Φαίνεται μη έγκυρο"
-      },
-      "placeholder": {
-        "setSecret": "Ορισμός μυστικού",
-        "staged": "Σε αναμονή (αποθήκευση με OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Χρησιμοποιείται για τα APIs URLhaus και ThreatFox.",
-        "OTX_API_KEY": "Προαιρετική πηγή εμπλουτισμού για το επίπεδο κυβερνοαπειλών.",
-        "ABUSEIPDB_API_KEY": "Προαιρετική πηγή εμπλουτισμού για φήμη κακόβουλων IP.",
-        "FINNHUB_API_KEY": "Τιμές μετοχών σε πραγματικό χρόνο και δεδομένα αγοράς.",
-        "NASA_FIRMS_API_KEY": "Σύστημα Πληροφοριών Πυρκαγιών για Διαχείριση Πόρων.",
-        "OLLAMA_API_URL": "π.χ. http://127.0.0.1:11434 (Ollama) ή http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-συμβατό endpoint.",
-        "OLLAMA_MODEL": "π.χ. llama3.1:8b — ετικέτα μοντέλου για περίληψη."
-      }
-    },
-    "settingsWindow": {
-      "validating": "Επικύρωση API keys...",
-      "saved": "Ρυθμίσεις αποθηκεύτηκαν",
-      "failed": "Αποτυχία αποθήκευσης: {{error}}",
-      "verifyFailed": "Αποθηκεύτηκαν τα επικυρωμένα keys. Απέτυχαν: {{errors}}",
-      "verboseOn": "Αναλυτική καταγραφή sidecar ΕΝΕΡΓΗ (αποθηκεύτηκε)",
-      "verboseOff": "Αναλυτική καταγραφή sidecar ΑΝΕΝΕΡΓΗ (αποθηκεύτηκε)",
-      "invokeFail": "Αποτυχία εκτέλεσης {{command}}. Ελέγξτε το αρχείο καταγραφής desktop.",
-      "openLogs": "Ο φάκελος αρχείων καταγραφής άνοιξε",
-      "openApiLog": "Το αρχείο καταγραφής API άνοιξε",
-      "sidecarError": "Αδυναμία πρόσβασης στο sidecar για εναλλαγή αναλυτικής λειτουργίας",
-      "noTraffic": "Δεν έχει καταγραφεί κίνηση ακόμα.",
-      "sidecarUnreachable": "Το sidecar δεν είναι προσβάσιμο.",
-      "logCleared": "Το αρχείο καταγραφής καθαρίστηκε.",
-      "worldMonitor": {
-        "tabLabel": "World Monitor",
-        "heroTitle": "Ένα κλειδί. Τα πάντα περιλαμβάνονται.",
-        "heroDescription": "Μία μόνο άδεια World Monitor αντικαθιστά κάθε API key και πάροχο LLM που θα ρυθμίζατε μόνοι σας. Περιλήψεις AI, πληροφορίες σε πραγματικό χρόνο, δεδομένα αγοράς, παρακολούθηση συγκρούσεων, ανίχνευση πυρκαγιών, δορυφορικές εικόνες — όλα ενεργοποιημένα, όλα διαχειριζόμενα, μηδενική ρύθμιση.",
-        "apiKey": {
-          "title": "Κλειδί Άδειας",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
-          "description": "Επικολλήστε την άδειά σας για άμεσο ξεκλείδωμα κάθε πηγής δεδομένων και λειτουργίας AI.",
-          "statusValid": "ΑΔΕΙΟΔΟΤΗΜΕΝΟ",
-          "statusMissing": "ΧΩΡΙΣ ΑΔΕΙΑ"
-        },
-        "dividerOr": "Ή",
-        "register": {
-          "title": "Κρατήστε τη Θέση σας",
-          "description": "Ετοιμαζόμαστε να λανσάρουμε τις άδειες World Monitor. Εγγραφείτε τώρα και γίνετε πρώτοι στη σειρά — τα πρώτα μέλη λαμβάνουν προτεραιότητα πρόσβασης και τιμολόγηση ιδρυτικού μέλους.",
-          "emailPlaceholder": "your@email.com",
-          "submitBtn": "Εγγραφή στη Λίστα",
-          "submitting": "Υποβολή...",
-          "success": "Είστε στη λίστα! Θα σας ειδοποιήσουμε πρώτους.",
-          "alreadyRegistered": "Είστε ήδη στη λίστα αναμονής.",
-          "error": "Η εγγραφή απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
-          "invalidEmail": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email."
-        },
-        "byokTitle": "Ή χρησιμοποιήστε τα δικά σας keys",
-        "byokDescription": "Προτιμάτε πλήρη έλεγχο; Μεταβείτε στις καρτέλες API Keys και LLMs για να ρυθμίσετε κάθε πηγή δεδομένων και πάροχο AI ξεχωριστά."
-      },
-      "table": {
-        "time": "Χρόνος",
-        "method": "Μέθοδος",
-        "path": "Διαδρομή",
-        "status": "Κατάσταση",
-        "duration": "Διάρκεια"
-      }
-    },
     "countryIntel": {
       "identifying": "Αναγνώριση χώρας...",
       "locating": "Εντοπισμός περιοχής...",
@@ -848,7 +751,7 @@
       "rankingStories": "Κατάταξη σημαντικών ιστοριών...",
       "analyzingSentiment": "Ανάλυση συναισθήματος...",
       "generatingBrief": "Δημιουργία παγκόσμιας ενημέρωσης...",
-      "infoTooltip": "<strong>Ανάλυση με AI</strong><br>• <strong>Παγκόσμια Ενημέρωση</strong>: Περίληψη AI (Groq/OpenRouter)<br>• <strong>Συναίσθημα</strong>: Ανάλυση τόνου ειδήσεων<br>• <strong>Ταχύτητα</strong>: Ταχέως εξελισσόμενες ιστορίες<br>• <strong>Εστιακά Σημεία</strong>: Συσχετίζει οντότητες ειδήσεων με σήματα χάρτη (στρατιωτικά, διαμαρτυρίες, διακοπές)<br><em>Μόνο desktop • Τροφοδοτείται από Llama 3.3 + Ανίχνευση Εστιακών Σημείων</em>"
+      "infoTooltip": "<strong>Ανάλυση με AI</strong><br>• <strong>Παγκόσμια Ενημέρωση</strong>: Περίληψη AI (Groq/OpenRouter)<br>• <strong>Συναίσθημα</strong>: Ανάλυση τόνου ειδήσεων<br>• <strong>Ταχύτητα</strong>: Ταχέως εξελισσόμενες ιστορίες<br>• <strong>Εστιακά Σημεία</strong>: Συσχετίζει οντότητες ειδήσεων με σήματα χάρτη (στρατιωτικά, διαμαρτυρίες, διακοπές)"
     },
     "cascade": {
       "noImpacts": "Δεν ανιχνεύθηκαν επιπτώσεις σε χώρες",
@@ -1025,9 +928,6 @@
     "export": {
       "exportData": "Εξαγωγή Δεδομένων"
     },
-    "runtimeConfig": {
-      "getApiKey": "Λήψη API key"
-    },
     "intelligenceFindings": {
       "hideFindings": "Απόκρυψη Ευρημάτων Πληροφοριών",
       "popupAlerts": "Αναδυόμενες ειδοποιήσεις",
@@ -1146,8 +1046,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Εμφάνιση πληροφοριών μεθοδολογίας",
-      "dragToResize": "Σύρετε για αλλαγή μεγέθους (διπλό κλικ για επαναφορά)",
-      "openSettings": "Άνοιγμα Ρυθμίσεων"
+      "dragToResize": "Σύρετε για αλλαγή μεγέθους (διπλό κλικ για επαναφορά)"
     },
     "languageSelector": {
       "selectLanguage": "Επιλογή Γλώσσας"
@@ -1158,10 +1057,6 @@
       "ok": "OK",
       "degraded": "Υποβαθμισμένη",
       "outage": "Διακοπή",
-      "backendUnavailable": "Τοπικό backend desktop μη διαθέσιμο. Εναλλαγή σε cloud API.",
-      "desktopReadiness": "Ετοιμότητα desktop",
-      "acceptanceChecks": "Έλεγχοι αποδοχής: {{ready}}/{{total}} έτοιμα · λειτουργίες με κλειδί {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Εναλλακτικές χωρίς ισοτιμία ({{count}})",
       "categories": {
         "all": "Όλα",
         "cloud": "Cloud",

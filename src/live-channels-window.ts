@@ -13,7 +13,6 @@ import {
 } from '@/components/LiveNewsPanel';
 import { t } from '@/services/i18n';
 import { escapeHtml } from '@/utils/sanitize';
-import { isDesktopRuntime, getRemoteApiBaseUrl } from '@/services/runtime';
 
 /** Builds a stable custom channel id from a YouTube handle (e.g. @Foo -> custom-foo). */
 function customChannelIdFromHandle(handle: string): string {
@@ -401,7 +400,7 @@ export function initLiveChannelsWindow(containerEl?: HTMLElement): void {
     if (handleInput) handleInput.classList.remove('invalid');
 
     try {
-      const baseUrl = isDesktopRuntime() ? getRemoteApiBaseUrl() : '';
+      const baseUrl = '';
       const res = await fetch(`${baseUrl}/api/youtube/live?channel=${encodeURIComponent(handle)}`);
       const data = await res.json();
       if (!data.channelExists) {

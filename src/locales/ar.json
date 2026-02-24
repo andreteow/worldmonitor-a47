@@ -249,76 +249,6 @@
       "dontShowAgain": "لا تعرض مجدداً",
       "gotIt": "حسناً"
     },
-    "downloadBanner": {
-      "title": "تطبيق سطح المكتب متاح",
-      "description": "أداء أصلي، تخزين آمن للمفاتيح محلياً، خرائط غير متصلة.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "عرض جميع المنصات",
-      "showLess": "عرض أقل",
-      "dismiss": "تجاهل"
-    },
-    "runtimeConfig": {
-      "title": "تهيئة سطح المكتب",
-      "alertTitle": {
-        "configured": "تم تهيئة إعدادات سطح المكتب",
-        "needsKeys": "قم بتهيئة مفاتيح API لتفعيل الميزات",
-        "some": "بعض الميزات تحتاج مفاتيح API"
-      },
-      "openSettings": "فتح الإعدادات",
-      "summary": {
-        "desktop": "وضع سطح المكتب",
-        "web": "وضع الويب (قراءة فقط، بيانات اعتماد يديرها الخادم)",
-        "secrets": "أسرار محلية مهيّأة",
-        "available": "ميزات متاحة"
-      },
-      "status": {
-        "ready": "جاهز",
-        "staged": "مُعدّ",
-        "needsKeys": "يحتاج مفاتيح",
-        "invalid": "غير صالح",
-        "missing": "مفقود",
-        "valid": "صالح",
-        "looksInvalid": "يبدو غير صالح"
-      },
-      "placeholder": {
-        "setSecret": "تعيين السر",
-        "staged": "مُعدّ (احفظ بـ OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "يُستخدم لواجهتي URLhaus و ThreatFox.",
-        "OTX_API_KEY": "مصدر إثراء اختياري لطبقة التهديدات السيبرانية.",
-        "ABUSEIPDB_API_KEY": "مصدر إثراء اختياري لسمعة عناوين IP الخبيثة.",
-        "FINNHUB_API_KEY": "أسعار أسهم فورية وبيانات سوقية.",
-        "NASA_FIRMS_API_KEY": "نظام معلومات الحرائق لإدارة الموارد.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
-    "settingsWindow": {
-      "validating": "جارٍ التحقق من مفاتيح API...",
-      "saved": "تم حفظ الإعدادات",
-      "failed": "فشل الحفظ: {{error}}",
-      "verifyFailed": "تم حفظ المفاتيح المُتحقق منها. فشلت: {{errors}}",
-      "verboseOn": "تسجيل تفصيلي للخادم الجانبي مُفعّل (محفوظ)",
-      "verboseOff": "تسجيل تفصيلي للخادم الجانبي مُعطّل (محفوظ)",
-      "invokeFail": "فشل تشغيل {{command}}. تحقق من سجل سطح المكتب.",
-      "openLogs": "تم فتح مجلد السجلات",
-      "openApiLog": "تم فتح سجل API",
-      "sidecarError": "تعذّر الوصول للخادم الجانبي لتبديل وضع التسجيل التفصيلي",
-      "noTraffic": "لم تُسجَّل حركة بيانات بعد.",
-      "sidecarUnreachable": "الخادم الجانبي غير قابل للوصول.",
-      "logCleared": "تم مسح السجل.",
-      "table": {
-        "time": "الوقت",
-        "method": "الطريقة",
-        "path": "المسار",
-        "status": "الحالة",
-        "duration": "المدة"
-      }
-    },
     "countryIntel": {
       "identifying": "جارٍ تحديد الدولة...",
       "locating": "جارٍ تحديد المنطقة...",
@@ -804,7 +734,7 @@
     },
     "insights": {
       "noStories": "لا توجد قصص عاجلة أو متعددة المصادر بعد",
-      "infoTooltip": "<strong>تحليل مدعوم بالذكاء الاصطناعي</strong><br>• <strong>موجز عالمي</strong>: ملخص AI (Groq/OpenRouter)<br>• <strong>المشاعر</strong>: تحليل نبرة الأخبار<br>• <strong>السرعة</strong>: قصص سريعة التطور<br>• <strong>النقاط المحورية</strong>: تربط كيانات الأخبار بإشارات الخريطة (عسكرية، احتجاجات، انقطاعات)<br><em>سطح المكتب فقط • مدعوم بـ Llama 3.3 + كشف النقاط المحورية</em>",
+      "infoTooltip": "<strong>تحليل مدعوم بالذكاء الاصطناعي</strong><br>• <strong>موجز عالمي</strong>: ملخص AI (Groq/OpenRouter)<br>• <strong>المشاعر</strong>: تحليل نبرة الأخبار<br>• <strong>السرعة</strong>: قصص سريعة التطور<br>• <strong>النقاط المحورية</strong>: تربط كيانات الأخبار بإشارات الخريطة (عسكرية، احتجاجات، انقطاعات)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -986,9 +916,6 @@
     "export": {
       "exportData": "تصدير البيانات"
     },
-    "runtimeConfig": {
-      "getApiKey": "الحصول على مفتاح API"
-    },
     "intelligenceFindings": {
       "badgeTitle": "نتائج استخباراتية",
       "title": "النتائج الاستخباراتية",
@@ -1106,8 +1033,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

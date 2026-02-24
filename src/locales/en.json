@@ -250,103 +250,6 @@
       "dontShowAgain": "Don't show again",
       "gotIt": "Got it"
     },
-    "downloadBanner": {
-      "title": "Desktop Available",
-      "description": "Native performance, secure local key storage, offline map tiles.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "Show all platforms",
-      "showLess": "Show less",
-      "dismiss": "Dismiss"
-    },
-    "runtimeConfig": {
-      "title": "Desktop Configuration",
-      "alertTitle": {
-        "configured": "Desktop settings configured",
-        "needsKeys": "Configure API keys to unlock features",
-        "some": "Some features need API keys"
-      },
-      "openSettings": "Open Settings",
-      "skipSetup": "Skip the setup \u2014 a single World Monitor license unlocks everything. Join the waitlist for early access.",
-      "summary": {
-        "desktop": "Desktop mode",
-        "web": "Web mode (read-only, server-managed credentials)",
-        "secrets": "local secrets configured",
-        "available": "features available"
-      },
-      "status": {
-        "ready": "Ready",
-        "staged": "Staged",
-        "needsKeys": "Needs Keys",
-        "invalid": "Invalid",
-        "missing": "Missing",
-        "valid": "Valid",
-        "looksInvalid": "Looks invalid"
-      },
-      "placeholder": {
-        "setSecret": "Set secret",
-        "staged": "Staged (save with OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Used for both URLhaus and ThreatFox APIs.",
-        "OTX_API_KEY": "Optional enrichment source for the cyber threat layer.",
-        "ABUSEIPDB_API_KEY": "Optional enrichment source for malicious IP reputation.",
-        "FINNHUB_API_KEY": "Real-time stock quotes and market data.",
-        "NASA_FIRMS_API_KEY": "Fire Information for Resource Management System.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
-    "settingsWindow": {
-      "validating": "Validating API keys...",
-      "saved": "Settings saved",
-      "failed": "Save failed: {{error}}",
-      "verifyFailed": "Saved verified keys. Failed: {{errors}}",
-      "verboseOn": "Verbose sidecar logging ON (saved)",
-      "verboseOff": "Verbose sidecar logging OFF (saved)",
-      "invokeFail": "Failed to run {{command}}. Check desktop log.",
-      "openLogs": "Opened logs folder",
-      "openApiLog": "Opened API log",
-      "sidecarError": "Could not reach sidecar to toggle verbose mode",
-      "noTraffic": "No traffic recorded yet.",
-      "sidecarUnreachable": "Sidecar not reachable.",
-      "logCleared": "Log cleared.",
-      "worldMonitor": {
-        "tabLabel": "World Monitor",
-        "heroTitle": "One key. Everything included.",
-        "heroDescription": "A single World Monitor license replaces every API key and LLM provider you'd otherwise configure yourself. AI summaries, real-time intelligence, market data, conflict tracking, fire detection, satellite imagery — all powered, all managed, zero setup.",
-        "apiKey": {
-          "title": "License Key",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
-          "description": "Paste your license to unlock every data source and AI feature instantly.",
-          "statusValid": "LICENSED",
-          "statusMissing": "NO LICENSE"
-        },
-        "dividerOr": "OR",
-        "register": {
-          "title": "Reserve Your Spot",
-          "description": "We're preparing to launch World Monitor licenses. Sign up now and be first in line — early members get priority access and founding-member pricing.",
-          "emailPlaceholder": "your@email.com",
-          "submitBtn": "Join Waitlist",
-          "submitting": "Submitting...",
-          "success": "You're on the list! We'll notify you first.",
-          "alreadyRegistered": "You're already on the waitlist.",
-          "error": "Registration failed. Please try again.",
-          "invalidEmail": "Please enter a valid email address."
-        },
-        "byokTitle": "Or bring your own keys",
-        "byokDescription": "Prefer full control? Head to the API Keys and LLMs tabs to configure each data source and AI provider individually."
-      },
-      "table": {
-        "time": "Time",
-        "method": "Method",
-        "path": "Path",
-        "status": "Status",
-        "duration": "Duration"
-      }
-    },
     "countryIntel": {
       "identifying": "Identifying country...",
       "locating": "Locating region...",
@@ -849,7 +752,7 @@
       "rankingStories": "Ranking important stories...",
       "analyzingSentiment": "Analyzing sentiment...",
       "generatingBrief": "Generating world brief...",
-      "infoTooltip": "<strong>AI-Powered Analysis</strong><br>• <strong>World Brief</strong>: AI summary (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: News tone analysis<br>• <strong>Velocity</strong>: Fast-moving stories<br>• <strong>Focal Points</strong>: Correlates news entities with map signals (military, protests, outages)<br><em>Desktop only • Powered by Llama 3.3 + Focal Point Detection</em>"
+      "infoTooltip": "<strong>AI-Powered Analysis</strong><br>• <strong>World Brief</strong>: AI summary (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: News tone analysis<br>• <strong>Velocity</strong>: Fast-moving stories<br>• <strong>Focal Points</strong>: Correlates news entities with map signals (military, protests, outages)"
     },
     "cascade": {
       "noImpacts": "No country impacts detected",
@@ -1026,9 +929,6 @@
     "export": {
       "exportData": "Export Data"
     },
-    "runtimeConfig": {
-      "getApiKey": "Get API key"
-    },
     "intelligenceFindings": {
       "hideFindings": "Hide Intelligence Findings",
       "popupAlerts": "Pop up new alerts",
@@ -1147,8 +1047,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1159,10 +1058,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",
@@ -1813,7 +1708,7 @@
     "noDataAvailable": "No data available",
     "updated": "Updated just now",
     "ago": "{{time}} ago",
-    "retrying": "Retrying…",
+    "retrying": "Retrying...",
     "failedToLoad": "Failed to load data",
     "noDataShort": "No data",
     "upstreamUnavailable": "Upstream API unavailable — will retry automatically",
@@ -1861,7 +1756,6 @@
     "close": "Close",
     "currentVariant": "(current)",
     "retry": "Retry",
-    "retrying": "Retrying...",
     "refresh": "Refresh"
   }
 }

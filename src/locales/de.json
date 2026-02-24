@@ -249,54 +249,6 @@
       "dontShowAgain": "Nicht mehr anzeigen",
       "gotIt": "Habe es"
     },
-    "downloadBanner": {
-      "title": "Desktop verfügbar",
-      "description": "Native Leistung, sichere lokale Schlüsselspeicherung, Offline-Kartenkacheln.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "dismiss": "Zurückweisen",
-      "showAllPlatforms": "Alle Plattformen anzeigen",
-      "showLess": "Weniger anzeigen"
-    },
-    "runtimeConfig": {
-      "title": "Desktop-Konfiguration",
-      "alertTitle": {
-        "configured": "Desktop-Einstellungen konfiguriert",
-        "needsKeys": "Konfigurieren Sie API-Schlüssel, um Funktionen freizuschalten",
-        "some": "Für einige Funktionen sind API-Schlüssel erforderlich"
-      },
-      "openSettings": "Öffnen Sie Einstellungen",
-      "summary": {
-        "desktop": "Desktop-Modus",
-        "web": "Webmodus (schreibgeschützt, serververwaltete Anmeldeinformationen)",
-        "secrets": "lokale Geheimnisse konfiguriert",
-        "available": "Funktionen verfügbar"
-      },
-      "status": {
-        "ready": "Bereit",
-        "staged": "Inszeniert",
-        "needsKeys": "Benötigt Schlüssel",
-        "invalid": "Ungültig",
-        "missing": "Fehlen",
-        "valid": "Gültig",
-        "looksInvalid": "Sieht ungültig aus"
-      },
-      "placeholder": {
-        "setSecret": "Geheimnis festlegen",
-        "staged": "Gestaffelt (mit OK speichern)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Wird für URLhaus- und ThreatFox-APIs verwendet.",
-        "OTX_API_KEY": "Optionale Anreicherungsquelle für die Cyberbedrohungsebene.",
-        "ABUSEIPDB_API_KEY": "Optionale Anreicherungsquelle für die Reputation bösartiger IPs.",
-        "FINNHUB_API_KEY": "Echtzeit-Aktienkurse und Marktdaten.",
-        "NASA_FIRMS_API_KEY": "Branderkennungssystem für Ressourcenmanagement.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
     "countryIntel": {
       "identifying": "Land wird identifiziert...",
       "locating": "Region wird gesucht...",
@@ -386,28 +338,6 @@
         "stockIndex": "Aktienindex: {{value}}",
         "recentHeadlines": "**Aktuelle Schlagzeilen:**"
       }
-    },
-    "settingsWindow": {
-      "invokeFail": "{{command}} konnte nicht ausgeführt werden. Überprüfen Sie das Desktop-Protokoll.",
-      "validating": "API-Schlüssel werden validiert...",
-      "verifyFailed": "Verifizierte Schlüssel gespeichert. Fehlgeschlagen: {{errors}}",
-      "saved": "Einstellungen gespeichert",
-      "failed": "Speichern fehlgeschlagen: {{error}}",
-      "openLogs": "Geöffneter Protokollordner",
-      "openApiLog": "API-Protokoll geöffnet",
-      "verboseOn": "Ausführliche Sidecar-Protokollierung EIN (gespeichert)",
-      "verboseOff": "Ausführliche Sidecar-Protokollierung AUS (gespeichert)",
-      "sidecarError": "Sidecar konnte nicht erreicht werden, um den ausführlichen Modus umzuschalten",
-      "noTraffic": "Es wurde noch kein Verkehr registriert.",
-      "table": {
-        "time": "Zeit",
-        "method": "Verfahren",
-        "path": "Weg",
-        "status": "Status",
-        "duration": "Dauer"
-      },
-      "sidecarUnreachable": "Beiwagen nicht erreichbar.",
-      "logCleared": "Protokoll gelöscht."
     }
   },
   "components": {
@@ -1058,7 +988,7 @@
     },
     "insights": {
       "noStories": "Noch keine aktuellen oder quellenübergreifenden Meldungen",
-      "infoTooltip": "<strong>AI-gestützte Analyse</strong><br>• <strong>World Brief</strong>: KI-Zusammenfassung (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: Nachrichtentonanalyse<br>• <strong>Velocity</strong>: Schnelllebige Geschichten<br>• <strong>Focal Points</strong>: Korreliert Nachrichtenentitäten mit Kartensignale (Militär, Proteste, Ausfälle)<br><em>Nur Desktop • Unterstützt von Llama 3.3 + Focal Point Detection</em>",
+      "infoTooltip": "<strong>AI-gestützte Analyse</strong><br>• <strong>World Brief</strong>: KI-Zusammenfassung (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: Nachrichtentonanalyse<br>• <strong>Velocity</strong>: Schnelllebige Geschichten<br>• <strong>Focal Points</strong>: Korreliert Nachrichtenentitäten mit Kartensignale (Militär, Proteste, Ausfälle)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -1101,13 +1031,9 @@
         "fearGreed": "Angst &amp; Gier"
       }
     },
-    "runtimeConfig": {
-      "getApiKey": "API-Schlüssel anfordern"
-    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

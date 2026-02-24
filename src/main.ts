@@ -13,7 +13,7 @@ Sentry.init({
   environment: location.hostname === 'worldmonitor.app' ? 'production'
     : location.hostname.includes('vercel.app') ? 'preview'
     : 'development',
-  enabled: Boolean(sentryDsn) && !location.hostname.startsWith('localhost') && !('__TAURI_INTERNALS__' in window),
+  enabled: Boolean(sentryDsn) && !location.hostname.startsWith('localhost'),
   sendDefaultPii: true,
   tracesSampleRate: 0.1,
   ignoreErrors: [
@@ -118,8 +118,6 @@ window.addEventListener('unhandledrejection', (e) => {
 
 import { debugInjectTestEvents, debugGetCells, getCellCount } from '@/services/geo-convergence';
 import { initMetaTags } from '@/services/meta-tags';
-import { installRuntimeFetchPatch } from '@/services/runtime';
-import { loadDesktopSecrets } from '@/services/runtime-config';
 import { initAnalytics, trackApiKeysSnapshot } from '@/services/analytics';
 import { applyStoredTheme } from '@/utils/theme-manager';
 import { clearChunkReloadGuard, installChunkReloadGuard } from '@/bootstrap/chunk-reload';
@@ -131,17 +129,10 @@ const chunkReloadStorageKey = installChunkReloadGuard(__APP_VERSION__);
 inject();
 
 // Initialize PostHog product analytics
-void initAnalytics();
+void initAnalytics().then(() => trackApiKeysSnapshot()).catch(() => {});
 
 // Initialize dynamic meta tags for sharing
 initMetaTags();
-
-// In desktop mode, route /api/* calls to the local Tauri sidecar backend.
-installRuntimeFetchPatch();
-loadDesktopSecrets().then(async () => {
-  await initAnalytics();
-  trackApiKeysSnapshot();
-}).catch(() => {});
 
 // Apply stored theme preference before app initialization (safety net for inline script)
 applyStoredTheme();
@@ -150,9 +141,6 @@ applyStoredTheme();
 requestAnimationFrame(() => {
   document.documentElement.classList.remove('no-transition');
 });
-
-// Clear stale settings-open flag (survives ungraceful shutdown)
-localStorage.removeItem('wm-settings-open');
 
 // Standalone windows: ?settings=1 = panel display settings, ?live-channels=1 = channel management
 // Both need i18n initialized so t() does not return undefined.
@@ -202,18 +190,7 @@ Object.defineProperty(window, 'beta', {
   },
 });
 
-// Suppress native WKWebView context menu in Tauri — allows custom JS context menus
-if ('__TAURI_INTERNALS__' in window || '__TAURI__' in window) {
-  document.addEventListener('contextmenu', (e) => {
-    const target = e.target as HTMLElement;
-    // Allow native menu on text inputs/textareas for copy/paste
-    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) return;
-    e.preventDefault();
-  });
-}
-
-if (!('__TAURI_INTERNALS__' in window) && !('__TAURI__' in window)) {
-  import('virtual:pwa-register').then(({ registerSW }) => {
+import('virtual:pwa-register').then(({ registerSW }) => {
     registerSW({
       onRegisteredSW(_swUrl, registration) {
         if (registration) {
@@ -228,4 +205,3 @@ if (!('__TAURI_INTERNALS__' in window) && !('__TAURI__' in window)) {
       },
     });
   });
-}

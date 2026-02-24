@@ -143,54 +143,6 @@
       "dontShowAgain": "Niet meer laten zien",
       "gotIt": "Ik heb het"
     },
-    "downloadBanner": {
-      "title": "Bureaublad beschikbaar",
-      "description": "Native prestaties, veilige lokale sleutelopslag, offline kaarttegels.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "dismiss": "Afwijzen",
-      "showAllPlatforms": "Toon alle platforms",
-      "showLess": "Laat minder zien"
-    },
-    "runtimeConfig": {
-      "title": "Desktopconfiguratie",
-      "alertTitle": {
-        "configured": "Bureaubladinstellingen geconfigureerd",
-        "needsKeys": "Configureer API-sleutels om functies te ontgrendelen",
-        "some": "Voor sommige functies zijn API-sleutels nodig"
-      },
-      "openSettings": "Instellingen openen",
-      "summary": {
-        "desktop": "Desktop-modus",
-        "web": "Webmodus (alleen-lezen, serverbeheerde inloggegevens)",
-        "secrets": "lokale geheimen geconfigureerd",
-        "available": "functies beschikbaar"
-      },
-      "status": {
-        "ready": "Klaar",
-        "staged": "Geënsceneerd",
-        "needsKeys": "Heeft sleutels nodig",
-        "invalid": "Ongeldig",
-        "missing": "Ontbreekt",
-        "valid": "Geldig",
-        "looksInvalid": "Ziet er ongeldig uit"
-      },
-      "placeholder": {
-        "setSecret": "Geheim instellen",
-        "staged": "Geënsceneerd (opslaan met OK)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Gebruikt voor de URLhaus- en ThreatFox-API's.",
-        "OTX_API_KEY": "Optionele verrijkingsbron voor de cyberdreigingslaag.",
-        "ABUSEIPDB_API_KEY": "Optionele verrijkingsbron voor reputatie van kwaadaardige IP-adressen.",
-        "FINNHUB_API_KEY": "Realtime aandelenkoersen en marktgegevens.",
-        "NASA_FIRMS_API_KEY": "Brandinformatiesysteem voor Resourcebeheer.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
     "countryIntel": {
       "identifying": "Land identificeren...",
       "locating": "Regio lokaliseren...",
@@ -294,28 +246,6 @@
       "saved": "Opgeslagen!",
       "copied": "Gekopieerd!",
       "opening": "Opening..."
-    },
-    "settingsWindow": {
-      "invokeFail": "Kan {{command}} niet uitvoeren. Controleer het bureaubladlogboek.",
-      "validating": "API-sleutels valideren...",
-      "verifyFailed": "Opgeslagen geverifieerde sleutels. Mislukt: {{errors}}",
-      "saved": "Instellingen opgeslagen",
-      "failed": "Opslaan mislukt: {{error}}",
-      "openLogs": "Map met logboeken geopend",
-      "openApiLog": "API-logboek geopend",
-      "verboseOn": "Uitgebreide zijspanregistratie AAN (opgeslagen)",
-      "verboseOff": "Uitgebreide zijspanregistratie UIT (opgeslagen)",
-      "sidecarError": "Kan zijspan niet bereiken om de uitgebreide modus in te schakelen",
-      "noTraffic": "Er is nog geen verkeer geregistreerd.",
-      "table": {
-        "time": "Tijd",
-        "method": "Methode",
-        "path": "Pad",
-        "status": "Status",
-        "duration": "Duur"
-      },
-      "sidecarUnreachable": "Zijspan niet bereikbaar.",
-      "logCleared": "Logboek gewist."
     }
   },
   "components": {
@@ -911,7 +841,7 @@
       }
     },
     "insights": {
-      "infoTooltip": "<strong>AI-aangedreven analyse</strong><br>• <strong>World Brief</strong>: AI-samenvatting (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: analyse van nieuwstoon<br>• <strong>Velocity</strong>: snel bewegende verhalen<br>• <strong>Focal Punten</strong>: correleert nieuwsentiteiten met kaartsignalen (militair, protesten, storingen)<br><em>Alleen desktop • Mogelijk gemaakt door Llama 3.3 + Focal Point-detectie</em>",
+      "infoTooltip": "<strong>AI-aangedreven analyse</strong><br>• <strong>World Brief</strong>: AI-samenvatting (Groq/OpenRouter)<br>• <strong>Sentiment</strong>: analyse van nieuwstoon<br>• <strong>Velocity</strong>: snel bewegende verhalen<br>• <strong>Focal Punten</strong>: correleert nieuwsentiteiten met kaartsignalen (militair, protesten, storingen)",
       "noStories": "Nog geen breaking of multi-source verhalen",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
@@ -1009,13 +939,9 @@
     "export": {
       "exportData": "Gegevens exporteren"
     },
-    "runtimeConfig": {
-      "getApiKey": "API-sleutel ophalen"
-    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1026,10 +952,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",

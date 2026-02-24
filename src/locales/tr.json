@@ -249,76 +249,6 @@
       "dontShowAgain": "Bir daha gosterme",
       "gotIt": "Anladim"
     },
-    "downloadBanner": {
-      "title": "Masaustu Uygulamasi Mevcut",
-      "description": "Yerel performans, guvenli anahtar depolama, cevrimdisi harita deseni.",
-      "macSilicon": "macOS (Apple Silicon)",
-      "macIntel": "macOS (Intel)",
-      "windows": "Windows (.exe)",
-      "linux": "Linux (.AppImage)",
-      "showAllPlatforms": "Tum platformlari goster",
-      "showLess": "Daha az goster",
-      "dismiss": "Kapat"
-    },
-    "runtimeConfig": {
-      "title": "Masaustu Yapilandirmasi",
-      "alertTitle": {
-        "configured": "Masaustu ayarlari yapilandirildi",
-        "needsKeys": "Ozellikleri etkinlestirmek icin API anahtarlarini yapilandiriniz",
-        "some": "Bazi ozellikler API anahtari gerektiriyor"
-      },
-      "openSettings": "Ayarlari Ac",
-      "summary": {
-        "desktop": "Masaustu modu",
-        "web": "Web modu (salt okunur, sunucu tarafli kimlik bilgileri)",
-        "secrets": "yerel gizli anahtar yapilandirildi",
-        "available": "ozellik kullanilabilir"
-      },
-      "status": {
-        "ready": "Hazir",
-        "staged": "Hazirlandi",
-        "needsKeys": "Anahtar Gerekli",
-        "invalid": "Gecersiz",
-        "missing": "Eksik",
-        "valid": "Gecerli",
-        "looksInvalid": "Gecersiz gorunuyor"
-      },
-      "placeholder": {
-        "setSecret": "Gizli anahtar ayarla",
-        "staged": "Hazirlandi (Tamam ile kaydet)"
-      },
-      "help": {
-        "URLHAUS_AUTH_KEY": "Hem URLhaus hem ThreatFox API'leri icin kullanilir.",
-        "OTX_API_KEY": "Siber tehdit katmani icin opsiyonel zenginlestirme kaynagi.",
-        "ABUSEIPDB_API_KEY": "Kotu amacli IP itibar bilgisi icin opsiyonel zenginlestirme kaynagi.",
-        "FINNHUB_API_KEY": "Anlik hisse senedi fiyatlari ve piyasa verileri.",
-        "NASA_FIRMS_API_KEY": "Kaynak Yonetimi icin Yangin Bilgi Sistemi.",
-        "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
-        "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
-    },
-    "settingsWindow": {
-      "validating": "API anahtarlari dogrulaniyor...",
-      "saved": "Ayarlar kaydedildi",
-      "failed": "Kayit basarisiz: {{error}}",
-      "verifyFailed": "Dogrulanmis anahtarlar kaydedildi. Basarisiz: {{errors}}",
-      "verboseOn": "Ayrintili sidecar loglama ACIK (kaydedildi)",
-      "verboseOff": "Ayrintili sidecar loglama KAPALI (kaydedildi)",
-      "invokeFail": "{{command}} calistirilamadi. Masaustu logunu kontrol edin.",
-      "openLogs": "Log klasoru acildi",
-      "openApiLog": "API logu acildi",
-      "sidecarError": "Ayrintili modu degistirmek icin sidecar'a ulasilamadi",
-      "noTraffic": "Henuz trafik kaydedilmedi.",
-      "sidecarUnreachable": "Sidecar'a ulasilamiyor.",
-      "logCleared": "Log temizlendi.",
-      "table": {
-        "time": "Zaman",
-        "method": "Metod",
-        "path": "Yol",
-        "status": "Durum",
-        "duration": "Sure"
-      }
-    },
     "countryIntel": {
       "identifying": "Ulke belirleniyor...",
       "locating": "Bolge tespit ediliyor...",
@@ -804,7 +734,7 @@
     },
     "insights": {
       "noStories": "Henuz son dakika veya coklu kaynak haberi yok",
-      "infoTooltip": "<strong>Yapay Zeka Destekli Analiz</strong><br>• <strong>Dunya Brifingi</strong>: Yapay zeka ozeti (Groq/OpenRouter)<br>• <strong>Duygu Analizi</strong>: Haber ton analizi<br>• <strong>Hiz</strong>: Hizla gelisen haberler<br>• <strong>Odak Noktalari</strong>: Haber varliklarini harita sinyalleriyle iliskilendirir (askeri, protestolar, kesintiler)<br><em>Yalnizca masaustu - Llama 3.3 + Odak Noktasi Tespiti tarafindan desteklenmektedir</em>",
+      "infoTooltip": "<strong>Yapay Zeka Destekli Analiz</strong><br>• <strong>Dunya Brifingi</strong>: Yapay zeka ozeti (Groq/OpenRouter)<br>• <strong>Duygu Analizi</strong>: Haber ton analizi<br>• <strong>Hiz</strong>: Hizla gelisen haberler<br>• <strong>Odak Noktalari</strong>: Haber varliklarini harita sinyalleriyle iliskilendirir (askeri, protestolar, kesintiler)",
       "step": "Step {{step}}/{{total}}",
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
@@ -986,9 +916,6 @@
     "export": {
       "exportData": "Verileri Disari Aktar"
     },
-    "runtimeConfig": {
-      "getApiKey": "API anahtari al"
-    },
     "intelligenceFindings": {
       "badgeTitle": "Istihbarat bulgulari",
       "title": "Istihbarat Bulgulari",
@@ -1106,8 +1033,7 @@
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
-      "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "dragToResize": "Drag to resize (double-click to reset)"
     },
     "languageSelector": {
       "selectLanguage": "Select Language"
@@ -1118,10 +1044,6 @@
       "ok": "OK",
       "degraded": "Degraded",
       "outage": "Outage",
-      "backendUnavailable": "Desktop local backend unavailable. Falling back to cloud API.",
-      "desktopReadiness": "Desktop readiness",
-      "acceptanceChecks": "Acceptance checks: {{ready}}/{{total}} ready · key-backed features {{available}}/{{featureTotal}}",
-      "nonParityFallbacks": "Non-parity fallbacks ({{count}})",
       "categories": {
         "all": "All",
         "cloud": "Cloud",
