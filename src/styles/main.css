@@ -142,30 +142,10 @@ body.animations-paused *::after {
   transition: none !important;
 }
 
-/* ============================================================
-   Theme Transition — smooth 200ms animation for theme switches
-   ============================================================ */
-*,
-*::before,
-*::after {
-  transition: background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
 /* Suppress transitions during initial page load (FOUC prevention) */
 .no-transition *,
 .no-transition *::before,
 .no-transition *::after {
-  transition: none !important;
-}
-
-/* Map and canvas elements manage their own rendering */
-canvas,
-.maplibregl-map,
-.maplibregl-canvas,
-.deck-canvas {
   transition: none !important;
 }
 
@@ -286,6 +266,7 @@ canvas,
 }
 
 .logo {
+  font-family: var(--font-headline);
   font-weight: bold;
   font-size: 14px;
   color: var(--accent);
@@ -839,6 +820,7 @@ canvas,
 }
 
 .panel-title {
+  font-family: var(--font-headline);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
@@ -1969,7 +1951,7 @@ canvas,
   display: inline-block;
   padding: 1px 4px;
   border-radius: 2px;
-  background: var(--surface-light);
+  background: var(--surface);
   color: var(--text-dim);
   font-size: 8px;
   font-weight: 500;
@@ -5900,11 +5882,11 @@ a.prediction-link:hover {
 }
 
 .export-option:first-child {
-  border-radius: 8px 3px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .export-option:last-child {
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 8px 8px;
 }
 
 /* Weather Markers */
@@ -10513,7 +10495,7 @@ a.prediction-link:hover {
 }
 
 .popup-toggle-switch.on {
-  background: #3b82f6;
+  background: #8f49ff;
 }
 
 .popup-toggle-knob {

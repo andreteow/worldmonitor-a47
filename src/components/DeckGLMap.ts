@@ -158,47 +158,44 @@ export { LAYER_ZOOM_THRESHOLDS };
 import { colors } from '@/config/design-tokens';
 import { hexToRGBA } from '@/utils/hex-to-rgba';
 
-function getOverlayColors() {
-  return {
-    // Threat dots — A47 Red/Orange/Yellow
-    hotspotHigh: hexToRGBA(colors.red, 200),
-    hotspotElevated: [255, 165, 0, 200] as [number, number, number, number],
-    hotspotLow: hexToRGBA(colors.yellow, 180),
+// A47 overlay colors — static (single dark theme, computed once)
+const COLORS = {
+  // Threat dots — A47 Red/Orange/Yellow
+  hotspotHigh: hexToRGBA(colors.red, 200),
+  hotspotElevated: [255, 165, 0, 200] as [number, number, number, number],
+  hotspotLow: hexToRGBA(colors.yellow, 180),
 
-    // Conflict zone fills
-    conflict: hexToRGBA(colors.red, 100),
+  // Conflict zone fills
+  conflict: hexToRGBA(colors.red, 100),
 
-    // Infrastructure/category markers — A47 palette
-    base: hexToRGBA(colors.purple, 200),
-    nuclear: hexToRGBA(colors.yellow, 200),
-    datacenter: hexToRGBA(colors.teal, 180),
-    cable: hexToRGBA(colors.teal, 150),
-    cableHighlight: hexToRGBA(colors.red, 200),
-    cableFault: [255, 50, 50, 220] as [number, number, number, number],
-    cableDegraded: [255, 165, 0, 200] as [number, number, number, number],
-    earthquake: [255, 100, 50, 200] as [number, number, number, number],
-    vesselMilitary: hexToRGBA(colors.red, 220),
-    flightMilitary: [255, 50, 50, 220] as [number, number, number, number],
-    protest: [255, 150, 0, 200] as [number, number, number, number],
-    outage: hexToRGBA(colors.red, 180),
-    weather: [100, 150, 255, 180] as [number, number, number, number],
-    startupHub: hexToRGBA(colors.teal, 200),
-    techHQ: hexToRGBA(colors.purpleLight, 200),
-    accelerator: hexToRGBA(colors.yellow, 200),
-    cloudRegion: hexToRGBA(colors.purple, 180),
-    stockExchange: hexToRGBA(colors.teal, 210),
-    financialCenter: hexToRGBA(colors.teal, 200),
-    centralBank: hexToRGBA(colors.yellow, 210),
-    commodityHub: [255, 150, 80, 200] as [number, number, number, number],
-    gulfInvestmentSA: [0, 168, 107, 220] as [number, number, number, number],
-    gulfInvestmentUAE: hexToRGBA(colors.red, 220),
-    ucdpStateBased: hexToRGBA(colors.red, 200),
-    ucdpNonState: [255, 165, 0, 200] as [number, number, number, number],
-    ucdpOneSided: hexToRGBA(colors.yellow, 200),
-  };
-}
-// Initialize and refresh on every buildLayers() call
-let COLORS = getOverlayColors();
+  // Infrastructure/category markers — A47 palette
+  base: hexToRGBA(colors.purple, 200),
+  nuclear: hexToRGBA(colors.yellow, 200),
+  datacenter: hexToRGBA(colors.teal, 180),
+  cable: hexToRGBA(colors.teal, 150),
+  cableHighlight: hexToRGBA(colors.red, 200),
+  cableFault: [255, 50, 50, 220] as [number, number, number, number],
+  cableDegraded: [255, 165, 0, 200] as [number, number, number, number],
+  earthquake: [255, 100, 50, 200] as [number, number, number, number],
+  vesselMilitary: hexToRGBA(colors.red, 220),
+  flightMilitary: [255, 50, 50, 220] as [number, number, number, number],
+  protest: [255, 150, 0, 200] as [number, number, number, number],
+  outage: hexToRGBA(colors.red, 180),
+  weather: [100, 150, 255, 180] as [number, number, number, number],
+  startupHub: hexToRGBA(colors.teal, 200),
+  techHQ: hexToRGBA(colors.purpleLight, 200),
+  accelerator: hexToRGBA(colors.yellow, 200),
+  cloudRegion: hexToRGBA(colors.purple, 180),
+  stockExchange: hexToRGBA(colors.teal, 210),
+  financialCenter: hexToRGBA(colors.teal, 200),
+  centralBank: hexToRGBA(colors.yellow, 210),
+  commodityHub: [255, 150, 80, 200] as [number, number, number, number],
+  gulfInvestmentSA: [0, 168, 107, 220] as [number, number, number, number],
+  gulfInvestmentUAE: hexToRGBA(colors.red, 220),
+  ucdpStateBased: hexToRGBA(colors.red, 200),
+  ucdpNonState: [255, 165, 0, 200] as [number, number, number, number],
+  ucdpOneSided: hexToRGBA(colors.yellow, 200),
+} as const;
 
 // SVG icons as data URLs for different marker shapes
 const MARKER_ICONS = {
@@ -880,8 +877,6 @@ export class DeckGLMap {
 
   private buildLayers(): LayersList {
     const startTime = performance.now();
-    // Refresh theme-aware overlay colors on each rebuild
-    COLORS = getOverlayColors();
     const layers: (Layer | null | false)[] = [];
     const { layers: mapLayers } = this.state;
     const filteredEarthquakes = this.filterByTime(this.earthquakes, (eq) => eq.occurredAt);
@@ -1183,7 +1178,7 @@ export class DeckGLMap {
         }
         const colorKey = d.type as keyof typeof PIPELINE_COLORS;
         const hex = PIPELINE_COLORS[colorKey] || '#393b54';
-        return this.hexToRgba(hex, 150);
+        return hexToRGBA(hex, 150);
       },
       getWidth: (d) => highlightedPipelines.has(d.id) ? 3 : 1.5,
       widthMinPixels: 1,
@@ -2633,20 +2628,6 @@ export class DeckGLMap {
       x,
       y,
     });
-  }
-
-  // Utility methods
-  private hexToRgba(hex: string, alpha: number): [number, number, number, number] {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (result && result[1] && result[2] && result[3]) {
-      return [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16),
-        alpha,
-      ];
-    }
-    return [100, 100, 100, alpha];
   }
 
   // UI Creation methods
