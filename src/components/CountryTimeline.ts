@@ -45,16 +45,6 @@ export class CountryTimeline {
     });
     this.resizeObserver.observe(this.container);
 
-    window.addEventListener('theme-changed', () => {
-      // Re-create tooltip with new theme colors
-      if (this.tooltip) {
-        this.tooltip.remove();
-        this.tooltip = null;
-      }
-      this.createTooltip();
-      // Re-render chart with new colors
-      if (this.currentEvents.length > 0) this.render(this.currentEvents);
-    });
   }
 
   private createTooltip(): void {

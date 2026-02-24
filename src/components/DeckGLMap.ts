@@ -43,7 +43,7 @@ import { HeatmapLayer } from '@deck.gl/aggregation-layers';
 import type { WeatherAlert } from '@/services/weather';
 import { escapeHtml } from '@/utils/sanitize';
 import { t } from '@/services/i18n';
-import { debounce, rafSchedule, getCurrentTheme } from '@/utils/index';
+import { debounce, rafSchedule } from '@/utils/index';
 import {
   INTEL_HOTSPOTS,
   CONFLICT_ZONES,
@@ -135,9 +135,8 @@ const VIEW_PRESETS: Record<DeckMapView, { longitude: number; latitude: number; z
 const MAP_INTERACTION_MODE: MapInteractionMode =
   import.meta.env.VITE_MAP_INTERACTION_MODE === 'flat' ? 'flat' : '3d';
 
-// Theme-aware basemap vector style URLs (English labels, no local scripts)
-const DARK_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
-const LIGHT_STYLE = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+// Basemap vector style URL (dark-only, A47 navy theme)
+const BASEMAP_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 
 // Zoom thresholds for layer visibility and labels (matches old Map.ts)
 // Zoom-dependent layer visibility and labels
@@ -155,63 +154,47 @@ const LAYER_ZOOM_THRESHOLDS: Partial<Record<keyof MapLayers, { minZoom: number; 
 // Export for external use
 export { LAYER_ZOOM_THRESHOLDS };
 
-// Theme-aware overlay color function — refreshed each buildLayers() call
+// A47 overlay colors — static (single dark theme)
+import { colors } from '@/config/design-tokens';
+import { hexToRGBA } from '@/utils/hex-to-rgba';
+
 function getOverlayColors() {
-  const isLight = getCurrentTheme() === 'light';
   return {
-    // Threat dots: IDENTICAL in both modes (user locked decision)
-    hotspotHigh: [255, 68, 68, 200] as [number, number, number, number],
+    // Threat dots — A47 Red/Orange/Yellow
+    hotspotHigh: hexToRGBA(colors.red, 200),
     hotspotElevated: [255, 165, 0, 200] as [number, number, number, number],
-    hotspotLow: [255, 255, 0, 180] as [number, number, number, number],
+    hotspotLow: hexToRGBA(colors.yellow, 180),
 
-    // Conflict zone fills: more transparent in light mode
-    conflict: isLight
-      ? [255, 0, 0, 60] as [number, number, number, number]
-      : [255, 0, 0, 100] as [number, number, number, number],
+    // Conflict zone fills
+    conflict: hexToRGBA(colors.red, 100),
 
-    // Infrastructure/category markers: darker variants in light mode for map readability
-    base: [0, 150, 255, 200] as [number, number, number, number],
-    nuclear: isLight
-      ? [180, 120, 0, 220] as [number, number, number, number]
-      : [255, 215, 0, 200] as [number, number, number, number],
-    datacenter: isLight
-      ? [13, 148, 136, 200] as [number, number, number, number]
-      : [0, 255, 200, 180] as [number, number, number, number],
-    cable: [0, 200, 255, 150] as [number, number, number, number],
-    cableHighlight: [255, 100, 100, 200] as [number, number, number, number],
+    // Infrastructure/category markers — A47 palette
+    base: hexToRGBA(colors.purple, 200),
+    nuclear: hexToRGBA(colors.yellow, 200),
+    datacenter: hexToRGBA(colors.teal, 180),
+    cable: hexToRGBA(colors.teal, 150),
+    cableHighlight: hexToRGBA(colors.red, 200),
     cableFault: [255, 50, 50, 220] as [number, number, number, number],
     cableDegraded: [255, 165, 0, 200] as [number, number, number, number],
     earthquake: [255, 100, 50, 200] as [number, number, number, number],
-    vesselMilitary: [255, 100, 100, 220] as [number, number, number, number],
+    vesselMilitary: hexToRGBA(colors.red, 220),
     flightMilitary: [255, 50, 50, 220] as [number, number, number, number],
     protest: [255, 150, 0, 200] as [number, number, number, number],
-    outage: [255, 50, 50, 180] as [number, number, number, number],
+    outage: hexToRGBA(colors.red, 180),
     weather: [100, 150, 255, 180] as [number, number, number, number],
-    startupHub: isLight
-      ? [22, 163, 74, 220] as [number, number, number, number]
-      : [0, 255, 150, 200] as [number, number, number, number],
-    techHQ: [100, 200, 255, 200] as [number, number, number, number],
-    accelerator: isLight
-      ? [180, 120, 0, 220] as [number, number, number, number]
-      : [255, 200, 0, 200] as [number, number, number, number],
-    cloudRegion: [150, 100, 255, 180] as [number, number, number, number],
-    stockExchange: isLight
-      ? [20, 120, 200, 220] as [number, number, number, number]
-      : [80, 200, 255, 210] as [number, number, number, number],
-    financialCenter: isLight
-      ? [0, 150, 110, 215] as [number, number, number, number]
-      : [0, 220, 150, 200] as [number, number, number, number],
-    centralBank: isLight
-      ? [180, 120, 0, 220] as [number, number, number, number]
-      : [255, 210, 80, 210] as [number, number, number, number],
-    commodityHub: isLight
-      ? [190, 95, 40, 220] as [number, number, number, number]
-      : [255, 150, 80, 200] as [number, number, number, number],
+    startupHub: hexToRGBA(colors.teal, 200),
+    techHQ: hexToRGBA(colors.purpleLight, 200),
+    accelerator: hexToRGBA(colors.yellow, 200),
+    cloudRegion: hexToRGBA(colors.purple, 180),
+    stockExchange: hexToRGBA(colors.teal, 210),
+    financialCenter: hexToRGBA(colors.teal, 200),
+    centralBank: hexToRGBA(colors.yellow, 210),
+    commodityHub: [255, 150, 80, 200] as [number, number, number, number],
     gulfInvestmentSA: [0, 168, 107, 220] as [number, number, number, number],
-    gulfInvestmentUAE: [255, 0, 100, 220] as [number, number, number, number],
-    ucdpStateBased: [255, 50, 50, 200] as [number, number, number, number],
+    gulfInvestmentUAE: hexToRGBA(colors.red, 220),
+    ucdpStateBased: hexToRGBA(colors.red, 200),
     ucdpNonState: [255, 165, 0, 200] as [number, number, number, number],
-    ucdpOneSided: [255, 255, 0, 200] as [number, number, number, number],
+    ucdpOneSided: hexToRGBA(colors.yellow, 200),
   };
 }
 // Initialize and refresh on every buildLayers() call
@@ -340,14 +323,6 @@ export class DeckGLMap {
     this.setupDOM();
     this.popup = new MapPopup(container);
 
-    window.addEventListener('theme-changed', (e: Event) => {
-      const theme = (e as CustomEvent).detail?.theme as 'dark' | 'light';
-      if (theme) {
-        this.switchBasemap(theme);
-        this.render(); // Rebuilds Deck.GL layers with new theme-aware colors
-      }
-    });
-
     this.initMapLibre();
 
     this.maplibreMap?.on('load', () => {
@@ -381,11 +356,9 @@ export class DeckGLMap {
 
   private initMapLibre(): void {
     const preset = VIEW_PRESETS[this.state.view];
-    const initialTheme = getCurrentTheme();
-
     this.maplibreMap = new maplibregl.Map({
       container: 'deckgl-basemap',
-      style: initialTheme === 'light' ? LIGHT_STYLE : DARK_STYLE,
+      style: BASEMAP_STYLE,
       center: [preset.longitude, preset.latitude],
       zoom: preset.zoom,
       renderWorldCopies: false,
@@ -1245,9 +1218,7 @@ export class DeckGLMap {
       filled: true,
       stroked: true,
       getFillColor: () => COLORS.conflict,
-      getLineColor: () => getCurrentTheme() === 'light'
-        ? [255, 0, 0, 120] as [number, number, number, number]
-        : [255, 0, 0, 180] as [number, number, number, number],
+      getLineColor: () => hexToRGBA(colors.red, 180),
       getLineWidth: 2,
       lineWidthMinPixels: 1,
       pickable: true,
@@ -3034,30 +3005,29 @@ export class DeckGLMap {
       hexagon: (color: string) => `<svg width="12" height="12" viewBox="0 0 12 12"><polygon points="6,1 10.5,3.5 10.5,8.5 6,11 1.5,8.5 1.5,3.5" fill="${color}"/></svg>`,
     };
 
-    const isLight = getCurrentTheme() === 'light';
     const legendItems = SITE_VARIANT === 'tech'
       ? [
-          { shape: shapes.circle(isLight ? 'rgb(22, 163, 74)' : 'rgb(0, 255, 150)'), label: t('components.deckgl.legend.startupHub') },
-          { shape: shapes.circle('rgb(100, 200, 255)'), label: t('components.deckgl.legend.techHQ') },
-          { shape: shapes.circle(isLight ? 'rgb(180, 120, 0)' : 'rgb(255, 200, 0)'), label: t('components.deckgl.legend.accelerator') },
-          { shape: shapes.circle('rgb(150, 100, 255)'), label: t('components.deckgl.legend.cloudRegion') },
-          { shape: shapes.square('rgb(136, 68, 255)'), label: t('components.deckgl.legend.datacenter') },
+          { shape: shapes.circle('rgb(71, 245, 200)'), label: t('components.deckgl.legend.startupHub') },
+          { shape: shapes.circle('rgb(143, 73, 255)'), label: t('components.deckgl.legend.techHQ') },
+          { shape: shapes.circle('rgb(254, 237, 85)'), label: t('components.deckgl.legend.accelerator') },
+          { shape: shapes.circle('rgb(118, 32, 255)'), label: t('components.deckgl.legend.cloudRegion') },
+          { shape: shapes.square('rgb(71, 245, 200)'), label: t('components.deckgl.legend.datacenter') },
         ]
       : SITE_VARIANT === 'finance'
       ? [
-          { shape: shapes.circle('rgb(255, 215, 80)'), label: t('components.deckgl.legend.stockExchange') },
-          { shape: shapes.circle('rgb(0, 220, 150)'), label: t('components.deckgl.legend.financialCenter') },
-          { shape: shapes.hexagon('rgb(255, 210, 80)'), label: t('components.deckgl.legend.centralBank') },
+          { shape: shapes.circle('rgb(71, 245, 200)'), label: t('components.deckgl.legend.stockExchange') },
+          { shape: shapes.circle('rgb(71, 245, 200)'), label: t('components.deckgl.legend.financialCenter') },
+          { shape: shapes.hexagon('rgb(254, 237, 85)'), label: t('components.deckgl.legend.centralBank') },
           { shape: shapes.square('rgb(255, 150, 80)'), label: t('components.deckgl.legend.commodityHub') },
-          { shape: shapes.triangle('rgb(80, 170, 255)'), label: t('components.deckgl.legend.waterway') },
+          { shape: shapes.triangle('rgb(71, 245, 200)'), label: t('components.deckgl.legend.waterway') },
         ]
       : [
-          { shape: shapes.circle('rgb(255, 68, 68)'), label: t('components.deckgl.legend.highAlert') },
+          { shape: shapes.circle('rgb(255, 60, 81)'), label: t('components.deckgl.legend.highAlert') },
           { shape: shapes.circle('rgb(255, 165, 0)'), label: t('components.deckgl.legend.elevated') },
-          { shape: shapes.circle(isLight ? 'rgb(180, 120, 0)' : 'rgb(255, 255, 0)'), label: t('components.deckgl.legend.monitoring') },
-          { shape: shapes.triangle('rgb(68, 136, 255)'), label: t('components.deckgl.legend.base') },
-          { shape: shapes.hexagon(isLight ? 'rgb(180, 120, 0)' : 'rgb(255, 220, 0)'), label: t('components.deckgl.legend.nuclear') },
-          { shape: shapes.square('rgb(136, 68, 255)'), label: t('components.deckgl.legend.datacenter') },
+          { shape: shapes.circle('rgb(254, 237, 85)'), label: t('components.deckgl.legend.monitoring') },
+          { shape: shapes.triangle('rgb(118, 32, 255)'), label: t('components.deckgl.legend.base') },
+          { shape: shapes.hexagon('rgb(254, 237, 85)'), label: t('components.deckgl.legend.nuclear') },
+          { shape: shapes.square('rgb(71, 245, 200)'), label: t('components.deckgl.legend.datacenter') },
         ];
 
     legend.innerHTML = `
@@ -3226,8 +3196,8 @@ export class DeckGLMap {
       data: top50,
       getSourcePosition: (d) => [d.originLon!, d.originLat!],
       getTargetPosition: (d) => [d.asylumLon!, d.asylumLat!],
-      getSourceColor: getCurrentTheme() === 'light' ? [50, 80, 180, 220] : [100, 150, 255, 180],
-      getTargetColor: getCurrentTheme() === 'light' ? [20, 150, 100, 220] : [100, 255, 200, 180],
+      getSourceColor: hexToRGBA(colors.purpleLight, 180),
+      getTargetColor: hexToRGBA(colors.teal, 180),
       getWidth: (d) => Math.max(1, (d.refugees / maxCount) * 8),
       widthMinPixels: 1,
       widthMaxPixels: 8,
@@ -3798,7 +3768,7 @@ export class DeckGLMap {
         });
 
         if (!this.countryHoverSetup) this.setupCountryHover();
-        this.updateCountryLayerPaint(getCurrentTheme());
+        this.updateCountryLayerPaint();
         if (this.highlightedCountryCode) this.highlightCountry(this.highlightedCountryCode);
         console.log('[DeckGLMap] Country boundaries loaded');
       })
@@ -3860,23 +3830,11 @@ export class DeckGLMap {
     } catch { /* layer not ready */ }
   }
 
-  private switchBasemap(theme: 'dark' | 'light'): void {
-    if (!this.maplibreMap) return;
-    this.maplibreMap.setStyle(theme === 'light' ? LIGHT_STYLE : DARK_STYLE);
-    // setStyle() replaces all sources/layers — reset guard so country layers are re-added
-    this.countryGeoJsonLoaded = false;
-    this.maplibreMap.once('style.load', () => {
-      this.loadCountryBoundaries();
-    });
-  }
-
-  private updateCountryLayerPaint(theme: 'dark' | 'light'): void {
+  private updateCountryLayerPaint(): void {
     if (!this.maplibreMap || !this.countryGeoJsonLoaded) return;
-    const hoverOpacity = theme === 'light' ? 0.10 : 0.06;
-    const highlightOpacity = theme === 'light' ? 0.18 : 0.12;
     try {
-      this.maplibreMap.setPaintProperty('country-hover-fill', 'fill-opacity', hoverOpacity);
-      this.maplibreMap.setPaintProperty('country-highlight-fill', 'fill-opacity', highlightOpacity);
+      this.maplibreMap.setPaintProperty('country-hover-fill', 'fill-opacity', 0.06);
+      this.maplibreMap.setPaintProperty('country-highlight-fill', 'fill-opacity', 0.12);
     } catch { /* layers may not be ready */ }
   }
 

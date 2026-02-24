@@ -6,7 +6,6 @@ import { RUNTIME_FEATURES, loadDesktopSecrets } from '@/services/runtime-config'
 import { tryInvokeTauri } from '@/services/tauri-bridge';
 import { escapeHtml } from '@/utils/sanitize';
 import { initI18n, t } from '@/services/i18n';
-import { applyStoredTheme } from '@/utils/theme-manager';
 
 let diagnosticsInitialized = false;
 
@@ -76,7 +75,6 @@ function mountPanel(panel: RuntimeConfigPanel, container: HTMLElement): void {
 
 async function initSettingsWindow(): Promise<void> {
   await initI18n();
-  applyStoredTheme();
 
   requestAnimationFrame(() => {
     document.documentElement.classList.remove('no-transition');

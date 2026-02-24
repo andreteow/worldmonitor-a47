@@ -196,10 +196,6 @@ export class MapComponent {
     this.loadMapData();
     this.setupResizeObserver();
 
-    window.addEventListener('theme-changed', () => {
-      this.baseRendered = false;
-      this.render();
-    });
   }
 
   private setupResizeObserver(): void {

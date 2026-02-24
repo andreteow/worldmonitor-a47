@@ -3,91 +3,94 @@
 @import './panels.css';
 
 /* ============================================================
-   Theme Colors — overridden by [data-theme="light"] below
+   A47 Brand Design Tokens — dark navy theme (single theme)
    ============================================================ */
 :root {
   /* Backgrounds */
-  --bg: #0a0a0a;
-  --bg-secondary: #111;
-  --surface: #141414;
-  --surface-hover: #1e1e1e;
-  --surface-active: #1a1a2e;
+  --bg: #0a0a1f;
+  --bg-secondary: #040416;
+  --surface: #12122e;
+  --surface-hover: #1c1c47;
+  --surface-active: #1c1c47;
 
   /* Borders */
-  --border: #2a2a2a;
-  --border-strong: #444;
-  --border-subtle: #1a1a1a;
+  --border: #393b54;
+  --border-strong: #3a3d4e;
+  --border-subtle: #1c1c47;
 
-  /* Text */
-  --text: #e8e8e8;
-  --text-secondary: #ccc;
-  --text-dim: #888;
-  --text-muted: #666;
-  --text-faint: #555;
-  --text-ghost: #444;
-  --accent: #fff;
+  /* Text hierarchy */
+  --text: #f5f6fc;
+  --text-secondary: #c8c9d4;
+  --text-dim: #8a8b99;
+  --text-muted: #6b6c7a;
+  --text-faint: #585966;
+  --text-ghost: #464752;
+  --accent: #ff3c51;
 
-  /* Overlays & shadows */
-  --overlay-subtle: rgba(255, 255, 255, 0.03);
-  --overlay-light: rgba(255, 255, 255, 0.05);
-  --overlay-medium: rgba(255, 255, 255, 0.1);
-  --overlay-heavy: rgba(255, 255, 255, 0.2);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --darken-light: rgba(0, 0, 0, 0.15);
-  --darken-medium: rgba(0, 0, 0, 0.2);
-  --darken-heavy: rgba(0, 0, 0, 0.3);
+  /* Overlays & shadows (adjusted for navy) */
+  --overlay-subtle: rgba(245, 246, 252, 0.03);
+  --overlay-light: rgba(245, 246, 252, 0.05);
+  --overlay-medium: rgba(245, 246, 252, 0.1);
+  --overlay-heavy: rgba(245, 246, 252, 0.2);
+  --shadow-color: rgba(4, 4, 22, 0.5);
+  --darken-light: rgba(4, 4, 22, 0.15);
+  --darken-medium: rgba(4, 4, 22, 0.2);
+  --darken-heavy: rgba(4, 4, 22, 0.3);
 
   /* Scrollbar */
-  --scrollbar-thumb: #333;
-  --scrollbar-thumb-hover: #555;
+  --scrollbar-thumb: #393b54;
+  --scrollbar-thumb-hover: #4a4c66;
 
   /* Input */
-  --input-bg: #1a1a1a;
+  --input-bg: #1c1c47;
 
   /* Panels */
-  --panel-bg: #141414;
-  --panel-border: #2a2a2a;
+  --panel-bg: #12122e;
+  --panel-border: #393b54;
 
   /* Map */
-  --map-bg: #020a08;
-  --map-grid: #0a2a20;
-  --map-country: #0a2018;
-  --map-stroke: #0f5040;
+  --map-bg: #0a0a1f;
+  --map-grid: #1c1c47;
+  --map-country: #12122e;
+  --map-stroke: #393b54;
 
   /* Font stack */
+  --font-headline: 'Saira Semi Condensed', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
   --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
-  --font-body: var(--font-mono);
 }
 
 [dir="rtl"] {
   --font-body: 'Geeza Pro', 'SF Arabic', 'Tahoma', system-ui, sans-serif;
+  --font-headline: 'Geeza Pro', 'SF Arabic', 'Tahoma', system-ui, sans-serif;
 }
 
 :lang(zh-CN),
 :lang(zh) {
   --font-body: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  --font-headline: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
 }
 
 /* ============================================================
-   Semantic Colors — dark-mode defaults, light overrides below
+   Semantic Colors — A47 palette
    ============================================================ */
 :root {
   /* Severity levels */
-  --semantic-critical: #ff4444;
+  --semantic-critical: #ff3c51;
   --semantic-high: #ff8800;
   --semantic-elevated: #ffaa00;
-  --semantic-normal: #44aa44;
-  --semantic-low: #3388ff;
-  --semantic-info: #3b82f6;
+  --semantic-normal: #47f5c8;
+  --semantic-low: #7620ff;
+  --semantic-info: #8f49ff;
 
   /* Threat levels */
-  --threat-critical: #ef4444;
+  --threat-critical: #ff3c51;
   --threat-high: #f97316;
   --threat-medium: #eab308;
-  --threat-low: #22c55e;
-  --threat-info: #3b82f6;
+  --threat-low: #47f5c8;
+  --threat-info: #8f49ff;
 
-  /* DEFCON levels */
+  /* DEFCON levels (domain-standard — preserved) */
   --defcon-1: #ff0040;
   --defcon-2: #ff4400;
   --defcon-3: #ffaa00;
@@ -95,95 +98,15 @@
   --defcon-5: #2d8a6e;
 
   /* Status indicators */
-  --status-live: #44ff88;
-  --status-cached: #ffaa00;
-  --status-unavailable: #ff4444;
+  --status-live: #47f5c8;
+  --status-cached: #feed55;
+  --status-unavailable: #ff3c51;
 
-  /* Legacy color aliases (used by existing var() references) */
-  --red: #ff4444;
-  --green: #44ff88;
-  --yellow: #ffaa00;
-}
-
-/* ============================================================
-   Light Theme — overrides theme colors AND semantic colors
-   Bright/neon dark-mode colors need darker variants for light backgrounds
-   ============================================================ */
-[data-theme="light"] {
-  /* Semantic color overrides — darker variants for light backgrounds */
-  --semantic-high: #ea580c;
-  /* Tailwind orange-600 (was #ff8800, 2.27:1) */
-  --semantic-elevated: #d97706;
-  /* Tailwind amber-600 (was #ffaa00, 1.81:1) */
-  --semantic-normal: #15803d;
-  /* Tailwind green-700 (was #44aa44, 2.81:1) */
-  --threat-high: #c2410c;
-  /* Tailwind orange-700 (was #f97316, 2.66:1) */
-  --threat-medium: #ca8a04;
-  /* Tailwind yellow-600 (was #eab308, 1.82:1) */
-  --threat-low: #15803d;
-  /* Tailwind green-700 (was #22c55e, 2.16:1) */
-  --defcon-3: #d97706;
-  /* Tailwind amber-600 (was #ffaa00, 1.81:1) */
-  --defcon-4: #0284c7;
-  /* Tailwind sky-600 (was #00aaff, 2.43:1) */
-  --status-live: #16a34a;
-  /* Tailwind green-600 (was #44ff88, 1.25:1) */
-  --status-cached: #d97706;
-  /* Tailwind amber-600 (was #ffaa00, 1.81:1) */
-  --green: #16a34a;
-  /* Tailwind green-600 (was #44ff88) */
-  --yellow: #d97706;
-  /* Tailwind amber-600 (was #ffaa00) */
-
-  /* Backgrounds */
-  --bg: #f8f9fa;
-  --bg-secondary: #f0f1f3;
-  --surface: #ffffff;
-  --surface-hover: #f0f0f0;
-  --surface-active: #e8e8f0;
-
-  /* Borders */
-  --border: #d4d4d4;
-  --border-strong: #b0b0b0;
-  --border-subtle: #e8e8e8;
-
-  /* Text */
-  --text: #1a1a1a;
-  --text-secondary: #333;
-  --text-dim: #6b6b6b;
-  --text-muted: #767676;
-  /* WCAG AA: 4.54:1 vs #f8f9fa */
-  --text-faint: #aaa;
-  --text-ghost: #bbb;
-  --accent: #111111;
-
-  /* Overlays & shadows */
-  --overlay-subtle: rgba(0, 0, 0, 0.02);
-  --overlay-light: rgba(0, 0, 0, 0.04);
-  --overlay-medium: rgba(0, 0, 0, 0.08);
-  --overlay-heavy: rgba(0, 0, 0, 0.12);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --darken-light: rgba(0, 0, 0, 0.1);
-  --darken-medium: rgba(0, 0, 0, 0.15);
-  --darken-heavy: rgba(0, 0, 0, 0.2);
-
-  /* Scrollbar */
-  --scrollbar-thumb: #c0c0c0;
-  --scrollbar-thumb-hover: #999;
-
-  /* Input */
-  --input-bg: #f0f0f0;
-
-  /* Panels */
-  --panel-bg: #ffffff;
-  --panel-border: #d4d4d4;
-
-  /* Map */
-  --map-bg: #e8f0f8;
-  --map-grid: #b0c8d8;
-  --map-country: #f0e8d8;
-  --map-stroke: #c8b8a8;
+  /* Legacy color aliases — 183+ references across codebase, must keep */
+  --red: #ff3c51;
+  --green: #47f5c8;
+  --yellow: #feed55;
+  --orange: #ff8800;
 }
 
 * {
