@@ -1,4 +1,5 @@
-import './styles/main.css';
+import './styles/base-layer.css';
+import './styles/happy-theme.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 // A47 brand fonts via Fontsource (self-hosted, Latin subset)
@@ -26,7 +27,7 @@ Sentry.init({
   ignoreErrors: [
     'Invalid WebGL2RenderingContext',
     'WebGL context lost',
-    /reading 'imageManager'/,
+    /imageManager/,
     /ResizeObserver loop/,
     /NotAllowedError/,
     /InvalidAccessError/,
@@ -100,6 +101,11 @@ Sentry.init({
     /Cannot define multiple custom elements/,
     /maxTextureDimension2D/,
     /Container app not found/,
+    /this\.St\.unref/,
+    /Invalid or unexpected token/,
+    /evaluating 'elemFound\.value'/,
+    /Cannot access '\w+' before initialization/,
+    /^Uint8Array$/,
   ],
   beforeSend(event) {
     const msg = event.exception?.values?.[0]?.value ?? '';
@@ -107,13 +113,17 @@ Sentry.init({
     const frames = event.exception?.values?.[0]?.stacktrace?.frames ?? [];
     // Suppress maplibre internal null-access crashes (light, placement) only when stack is in map chunk
     if (/this\.style\._layers|reading '_layers'|this\.light is null|can't access property "(id|type|setFilter)", \w+ is (null|undefined)|Cannot read properties of null \(reading '(id|type|setFilter|_layers)'\)|null is not an object \(evaluating '(E\.|this\.style)|^\w{1,2} is null$/.test(msg)) {
-      if (frames.some(f => /\/(map|deck-stack)-[A-Za-z0-9]+\.js/.test(f.filename ?? ''))) return null;
+      if (frames.some(f => /\/(map|maplibre|deck-stack)-[A-Za-z0-9-]+\.js/.test(f.filename ?? ''))) return null;
     }
     // Suppress any TypeError that happens entirely within maplibre or deck.gl internals
     if (/^TypeError:/.test(msg) && frames.length > 0) {
-      const appFrames = frames.filter(f => f.in_app && !/\/sentry-[A-Za-z0-9]+\.js/.test(f.filename ?? ''));
-      if (appFrames.length > 0 && appFrames.every(f => /\/(map|deck-stack)-[A-Za-z0-9]+\.js/.test(f.filename ?? ''))) return null;
+      const appFrames = frames.filter(f => f.in_app && !/\/sentry-[A-Za-z0-9-]+\.js/.test(f.filename ?? ''));
+      if (appFrames.length > 0 && appFrames.every(f => /\/(map|maplibre|deck-stack)-[A-Za-z0-9-]+\.js/.test(f.filename ?? ''))) return null;
     }
+    // Suppress YouTube IFrame widget API internal errors
+    if (frames.some(f => /www-widgetapi\.js/.test(f.filename ?? ''))) return null;
+    // Suppress Sentry SDK internal crashes (logs.js)
+    if (frames.some(f => /\/ingest\/static\/logs\.js/.test(f.filename ?? ''))) return null;
     return event;
   },
 });
@@ -126,6 +136,8 @@ window.addEventListener('unhandledrejection', (e) => {
 import { debugInjectTestEvents, debugGetCells, getCellCount } from '@/services/geo-convergence';
 import { initMetaTags } from '@/services/meta-tags';
 import { initAnalytics, trackApiKeysSnapshot } from '@/services/analytics';
+import { applyStoredTheme } from '@/utils/theme-manager';
+import { SITE_VARIANT } from '@/config/variant';
 import { clearChunkReloadGuard, installChunkReloadGuard } from '@/bootstrap/chunk-reload';
 
 // Auto-reload on stale chunk 404s after deployment (Vite fires this for modulepreload failures).
@@ -140,7 +152,16 @@ void initAnalytics().then(() => trackApiKeysSnapshot()).catch(() => {});
 // Initialize dynamic meta tags for sharing
 initMetaTags();
 
-// Remove no-transition class after first paint
+// Apply stored theme preference before app initialization (safety net for inline script)
+applyStoredTheme();
+
+// Set data-variant on <html> so CSS theme overrides activate (inline script handles hostname/localStorage,
+// this catches the VITE_VARIANT env var path used during local dev and Vercel deployments)
+if (SITE_VARIANT && SITE_VARIANT !== 'full') {
+  document.documentElement.dataset.variant = SITE_VARIANT;
+}
+
+// Remove no-transition class after first paint to enable smooth theme transitions
 requestAnimationFrame(() => {
   document.documentElement.classList.remove('no-transition');
 });

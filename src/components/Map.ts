@@ -348,7 +348,10 @@ export class MapComponent {
       'sanctions', 'economic', 'waterways',               // geopolitical/economic
       'natural', 'weather',                               // natural events
     ];
-    const layers = SITE_VARIANT === 'tech' ? techLayers : SITE_VARIANT === 'finance' ? financeLayers : fullLayers;
+    const happyLayers: (keyof MapLayers)[] = [
+      'positiveEvents', 'kindness', 'happiness', 'speciesRecovery', 'renewableInstallations',
+    ];
+    const layers = SITE_VARIANT === 'tech' ? techLayers : SITE_VARIANT === 'finance' ? financeLayers : SITE_VARIANT === 'happy' ? happyLayers : fullLayers;
     const layerLabelKeys: Partial<Record<keyof MapLayers, string>> = {
       hotspots: 'components.deckgl.layers.intelHotspots',
       conflicts: 'components.deckgl.layers.conflictZones',
@@ -577,6 +580,11 @@ export class MapComponent {
         <div class="map-legend-item"><span class="legend-dot" style="background:#feed55"></span>${escapeHtml(t('components.deckgl.layers.cloudRegions').toUpperCase())}</div>
         <div class="map-legend-item"><span class="map-legend-icon" style="color:#8f49ff">📅</span>${escapeHtml(t('components.deckgl.layers.techEvents').toUpperCase())}</div>
         <div class="map-legend-item"><span class="map-legend-icon" style="color:#47f5c8">💾</span>${escapeHtml(t('components.deckgl.layers.aiDataCenters').toUpperCase())}</div>
+      `;
+    } else if (SITE_VARIANT === 'happy') {
+      // Happy variant legend — natural events only
+      legend.innerHTML = `
+        <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>${escapeHtml(t('components.deckgl.layers.naturalEvents').toUpperCase())}</div>
       `;
     } else {
       // Geopolitical variant legend

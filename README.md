@@ -28,14 +28,14 @@
 | Problem                            | Solution                                                                                                   |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | News scattered across 100+ sources | **Single unified dashboard** with 100+ curated feeds                                                       |
-| No geospatial context for events   | **Interactive map** with 35+ toggleable data layers                                                        |
+| No geospatial context for events   | **Interactive map** with 36+ toggleable data layers                                                        |
 | Information overload               | **AI-synthesized briefs** with focal point detection and local LLM support                                 |
 | Crypto/macro signal noise          | **7-signal market radar** with composite BUY/CASH verdict                                                  |
 | Expensive OSINT tools ($$$)        | **100% free & open source**                                                                                |
 | Static news feeds                  | **Real-time updates** with live video streams                                                              |
 | Cloud-dependent AI tools           | **Run AI locally** with Ollama/LM Studio — no API keys, no data leaves your machine                       |
 | Web-only dashboards                | **Installable PWA** with offline map support and standalone display mode                                   |
-| Flat 2D maps                       | **3D WebGL globe** with deck.gl rendering and 35+ toggleable data layers                                   |
+| Flat 2D maps                       | **3D WebGL globe** with deck.gl rendering and 36+ toggleable data layers                                   |
 | Siloed financial data              | **Finance variant** with 92 stock exchanges, 19 financial centers, 13 central banks, and Gulf FDI tracking |
 | Undocumented, fragile APIs         | **Proto-first API contracts** — 17 typed services with auto-generated clients, servers, and OpenAPI docs   |
 
@@ -48,8 +48,9 @@
 | **World Monitor**   | [worldmonitor.app](https://worldmonitor.app)                 | Geopolitics, military, conflicts, infrastructure |
 | **Tech Monitor**    | [tech.worldmonitor.app](https://tech.worldmonitor.app)       | Startups, AI/ML, cloud, cybersecurity            |
 | **Finance Monitor** | [finance.worldmonitor.app](https://finance.worldmonitor.app) | Global markets, trading, central banks, Gulf FDI |
+| **Happy Monitor**   | [happy.worldmonitor.app](https://happy.worldmonitor.app)     | Good news, positive trends, uplifting stories    |
 
-All three variants run from a single codebase — switch between them with one click via the header bar (🌍 WORLD | 💻 TECH | 📈 FINANCE).
+All four variants run from a single codebase — switch between them with one click via the header bar.
 
 ---
 
@@ -66,7 +67,7 @@ All three variants run from a single codebase — switch between them with one c
 ### Interactive 3D Globe
 
 - **WebGL-accelerated rendering** — deck.gl + MapLibre GL JS for smooth 60fps performance with thousands of concurrent markers. Switchable between **3D globe** (with pitch/rotation) and **flat map** mode via `VITE_MAP_INTERACTION_MODE`
-- **35+ data layers** — conflicts, military bases, nuclear facilities, undersea cables, pipelines, satellite fire detection, protests, natural disasters, datacenters, displacement flows, climate anomalies, cyber threat IOCs, stock exchanges, financial centers, central banks, commodity hubs, Gulf investments, and more
+- **36+ data layers** — conflicts, military bases, nuclear facilities, undersea cables, pipelines, satellite fire detection, protests, natural disasters, datacenters, displacement flows, climate anomalies, cyber threat IOCs, stock exchanges, financial centers, central banks, commodity hubs, Gulf investments, trade routes, and more
 - **Smart clustering** — Supercluster groups markers at low zoom, expands on zoom in. Cluster thresholds adapt to zoom level
 - **Progressive disclosure** — detail layers (bases, nuclear, datacenters) appear only when zoomed in; zoom-adaptive opacity fades markers from 0.2 at world view to 1.0 at street level
 - **Label deconfliction** — overlapping labels (e.g., multiple BREAKING badges) are automatically suppressed by priority, highest-severity first
@@ -122,6 +123,7 @@ All three variants run from a single codebase — switch between them with one c
 - Internet outages (Cloudflare Radar)
 - Critical mineral deposits
 - NASA FIRMS satellite fire detection (VIIRS thermal hotspots)
+- 19 global trade routes (container, energy, bulk) with multi-segment arcs through strategic chokepoints
 
 </details>
 
@@ -205,7 +207,7 @@ All three variants run from a single codebase — switch between them with one c
 - Data freshness monitoring across 14 data sources with explicit intelligence gap reporting
 - Per-feed circuit breakers with 5-minute cooldowns to prevent cascading failures
 - Browser-side ML worker (Transformers.js) for NER and sentiment analysis without server dependency
-- **Cmd+K search** — fuzzy search across 20+ result types: news headlines, countries (with direct country brief navigation), hotspots, markets, military bases, cables, pipelines, datacenters, nuclear facilities, tech companies, and more
+- **Cmd+K command palette** — fuzzy search across 20+ result types (news, countries, hotspots, markets, bases, cables, datacenters, nuclear facilities, and more), plus layer toggle commands, layer presets (e.g., `layers:finance`), and instant country brief navigation for all ISO countries
 - **Historical playback** — dashboard snapshots are stored in IndexedDB. A time slider allows rewinding to any saved state, with live updates paused during playback
 - **Mobile detection** — screens below 768px receive a warning modal since the dashboard is designed for multi-panel desktop use
 - **UCDP conflict classification** — countries with active wars (1,000+ battle deaths/year) receive automatic CII floor scores, preventing optimistic drift. The UCDP GED API integration uses automatic version discovery (probing multiple year-based API versions in parallel), negative caching (5-minute backoff after upstream failures), discovered-version caching (1-hour TTL), and stale-on-error fallback to ensure conflict data is always available even when the upstream API is intermittently down
@@ -1319,6 +1321,39 @@ GNU Affero General Public License v3.0 (AGPL-3.0) — see [LICENSE](LICENSE) for
 ## Author
 
 **Elie Habib** — [GitHub](https://github.com/koala73)
+
+---
+
+## Contributors
+
+Thanks to everyone who has contributed to World Monitor:
+
+[@SebastienMelki](https://github.com/SebastienMelki),
+[@Lib-LOCALE](https://github.com/Lib-LOCALE),
+[@lawyered0](https://github.com/lawyered0),
+[@elzalem](https://github.com/elzalem),
+[@Rau1CS](https://github.com/Rau1CS),
+[@Sethispr](https://github.com/Sethispr),
+[@InlitX](https://github.com/InlitX),
+[@Ahmadhamdan47](https://github.com/Ahmadhamdan47),
+[@K35P](https://github.com/K35P),
+[@Niboshi-Wasabi](https://github.com/Niboshi-Wasabi),
+[@pedroddomingues](https://github.com/pedroddomingues),
+[@haosenwang1018](https://github.com/haosenwang1018),
+[@aa5064](https://github.com/aa5064),
+[@cwnicoletti](https://github.com/cwnicoletti),
+[@facusturla](https://github.com/facusturla),
+[@toasterbook88](https://github.com/toasterbook88)
+
+---
+
+## Security Acknowledgments
+
+We thank the following researchers for responsibly disclosing security issues:
+
+- **Cody Richard** — Disclosed three security findings covering IPC command exposure via DevTools in production builds, renderer-to-sidecar trust boundary analysis, and the global fetch patch credential injection architecture (2025)
+
+If you discover a vulnerability, please see our [Security Policy](./SECURITY.md) for responsible disclosure guidelines.
 
 ---
 

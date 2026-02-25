@@ -11,6 +11,8 @@
     "map": "Interactive Map",
     "techMap": "Mondiale technologie",
     "politics": "Wereldnieuws",
+    "us": "Verenigde Staten",
+    "europe": "Europa",
     "tech": "Technologie",
     "finance": "Financieel",
     "gov": "Regering",
@@ -63,10 +65,10 @@
   },
   "modals": {
     "search": {
-      "placeholder": "Zoek naar nieuws, pijpleidingen, bases, markten...",
-      "hint": "Nieuws • Pijpleidingen • Basissen • Kabels • Datacentra • Markten",
+      "placeholder": "Zoeken of commando typen...",
+      "hint": "Zoeken • Landen • Lagen • Panelen • Navigatie • Instellingen",
       "recent": "Recente zoekopdrachten",
-      "empty": "Zoek in alle gegevensbronnen",
+      "empty": "Zoek gegevens of voer opdrachten uit",
       "noResults": "No results found",
       "navigate": "navigeren",
       "select": "selecteren",
@@ -93,10 +95,10 @@
         "techhq": "Tech-hoofdkantoor",
         "accelerator": "Gaspedaal"
       },
-      "placeholderTech": "Zoek bedrijven, AI-labs, startups, evenementen...",
-      "hintTech": "Hoofdkantoren • Bedrijven • AI Labs • Startups • Accelerators • Evenementen",
-      "placeholderFinance": "Zoek beurzen, markten, centrale banken...",
-      "hintFinance": "Beurzen • Financiële centra • Centrale banken • Grondstoffen"
+      "placeholderTech": "Zoeken of commando typen...",
+      "hintTech": "Zoeken • Bedrijven • AI Labs • Lagen • Navigatie • Instellingen",
+      "placeholderFinance": "Zoeken of commando typen...",
+      "hintFinance": "Zoeken • Beurzen • Markten • Lagen • Navigatie • Instellingen"
     },
     "signal": {
       "source": "Source",
@@ -339,7 +341,8 @@
         "financialCenters": "Financiële centra",
         "centralBanks": "Centrale banken",
         "commodityHubs": "Grondstoffenhubs",
-        "gulfInvestments": "GCC-investeringen"
+        "gulfInvestments": "GCC-investeringen",
+        "tradeRoutes": "Handelsroutes"
       },
       "layersTitle": "Lagen",
       "layerGuide": "Lagengids",
@@ -431,7 +434,8 @@
           "transportShipping": "Schepen, knelpunten, 61 strategische havens",
           "transportDelays": "Luchthavenvertragingen en grondstops (FAA)",
           "naturalEventsFull": "Aardbevingen (USGS) + stormen, branden, vulkanen, overstromingen (NASA EONET)",
-          "waterwaysLabels": "Strategische chokepoint-labels"
+          "waterwaysLabels": "Strategische chokepoint-labels",
+          "tradeRoutes": "Belangrijke wereldwijde scheepvaartroutes die havens verbinden via strategische knelpunten"
         },
         "notes": {
           "timeAffects": "Beïnvloedt: aardbevingen, weer, protesten, stroomstoringen"
@@ -680,8 +684,7 @@
         "minutesAgo": "{{count}}m geleden",
         "hoursAgo": "{{count}}u geleden",
         "daysAgo": "{{count}}d geleden"
-      },
-      "hideFindings": "Hide Intelligence Findings"
+      }
     },
     "economic": {
       "noIndicatorData": "Nog geen indicatorgegevens - FRED wordt mogelijk geladen",
@@ -847,7 +850,27 @@
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
       "analyzingSentiment": "Analyzing sentiment...",
-      "generatingBrief": "Generating world brief..."
+      "generatingBrief": "Generating world brief...",
+      "settingsTitle": "Settings",
+      "sectionMap": "Map",
+      "sectionAi": "AI Analysis",
+      "mapFlashLabel": "Live Event Pulse",
+      "mapFlashDesc": "Flash locations on the map when breaking news arrives",
+      "aiFlowTitle": "Settings",
+      "aiFlowCloudLabel": "Cloud AI (Groq & OpenRouter)",
+      "aiFlowCloudDesc": "Koppen naar de cloud sturen voor AI-samenvatting (aanbevolen)",
+      "aiFlowBrowserLabel": "Lokaal browsermodel",
+      "aiFlowBrowserDesc": "AI lokaal in uw browser uitvoeren",
+      "aiFlowBrowserWarn": "Er wordt ongeveer 250 MB aan gegevens naar uw computer gedownload",
+      "aiFlowOllamaCta": "Wilt u volledig lokale AI?",
+      "aiFlowOllamaCtaDesc": "Download de desktop-app voor Ollama-ondersteuning",
+      "aiFlowDownloadDesktop": "Desktop-app downloaden →",
+      "aiFlowStatusActive": "Cloud AI actief",
+      "aiFlowStatusCloudAndBrowser": "Cloud AI + Browsermodel actief",
+      "aiFlowStatusBrowserOnly": "Alleen browsermodel",
+      "aiFlowStatusDisabled": "Geen AI-aanbieders ingeschakeld",
+      "insightsDisabledTitle": "AI-analyse is uitgeschakeld",
+      "insightsDisabledHint": "Enable providers via the settings gear in the map header"
     },
     "techHubs": {
       "infoTooltip": "<strong>Tech Hub-activiteit</strong><br>Toont tech-hubs met de meeste nieuwsactiviteit.<br><br><em>Activiteitsniveaus:</em><br>• <span style=\"color: {{highColor}}\">Hoog</span> — Breaking news of 50+ score<br>• <span style=\"color: {{elevatedColor}}\">Verhoogd</span> — Score 20-49<br>• <span style=\"color: {{lowColor}}\">Laag</span> — Score lager dan 20<br><br>Klik op een hub om naar de locatie ervan te zoomen.",
@@ -1002,7 +1025,14 @@
       "cancel": "Annuleren",
       "confirmDelete": "Dit kanaal verwijderen?",
       "confirmTitle": "Bevestigen",
-      "restoreDefaults": "Standaardkanalen herstellen"
+      "restoreDefaults": "Standaardkanalen herstellen",
+      "availableChannels": "Beschikbare kanalen",
+      "customChannel": "Aangepast kanaal",
+      "regionNorthAmerica": "Noord-Amerika",
+      "regionEurope": "Europa",
+      "regionLatinAmerica": "Latijns-Amerika",
+      "regionAsia": "Azië",
+      "regionAfrica": "Afrika"
     }
   },
   "popups": {
@@ -1656,7 +1686,55 @@
     "filterSources": "Bronnen filteren...",
     "sourcesEnabled": "{{enabled}}/{{total}} ingeschakeld",
     "finance": "FINANCE",
-    "toggleTheme": "Schakel tussen de donkere/lichte modus"
+    "toggleTheme": "Schakel tussen de donkere/lichte modus",
+    "panelDisplayCaption": "Kies welke panelen op het dashboard worden weergegeven",
+    "tabGeneral": "Algemeen",
+    "tabPanels": "Panelen",
+    "tabSources": "Bronnen",
+    "languageLabel": "Taal",
+    "sourceRegionAll": "Alles",
+    "sourceRegionWorldwide": "Wereldwijd",
+    "sourceRegionUS": "Verenigde Staten",
+    "sourceRegionMiddleEast": "Midden-Oosten",
+    "sourceRegionAfrica": "Afrika",
+    "sourceRegionLatAm": "Latijns-Amerika",
+    "sourceRegionAsiaPacific": "Azië-Pacific",
+    "sourceRegionEurope": "Europa",
+    "sourceRegionTopical": "Thematisch",
+    "sourceRegionIntel": "Inlichtingen",
+    "sourceRegionTechNews": "Tech News",
+    "sourceRegionAiMl": "AI & ML",
+    "sourceRegionStartupsVc": "Startups & VC",
+    "sourceRegionRegionalTech": "Regional Ecosystems",
+    "sourceRegionDeveloper": "Developer",
+    "sourceRegionCybersecurity": "Cybersecurity",
+    "sourceRegionTechPolicy": "Policy & Research",
+    "sourceRegionTechMedia": "Media & Podcasts",
+    "sourceRegionMarkets": "Markets & Analysis",
+    "sourceRegionFixedIncomeFx": "Fixed Income & FX",
+    "sourceRegionCommodities": "Commodities",
+    "sourceRegionCryptoDigital": "Crypto & Digital",
+    "sourceRegionCentralBanks": "Central Banks & Economy",
+    "sourceRegionDeals": "Deals & Corporate",
+    "sourceRegionFinRegulation": "Financial Regulation",
+    "sourceRegionGulfMena": "Golf & MENA",
+    "filterPanels": "Panels filteren...",
+    "panelCatCore": "Kern",
+    "panelCatIntelligence": "Inlichtingen",
+    "panelCatRegionalNews": "Regionaal Nieuws",
+    "panelCatMarketsFinance": "Markten & Financiën",
+    "panelCatTopical": "Actueel",
+    "panelCatDataTracking": "Data & Tracking",
+    "panelCatTechAi": "Tech & AI",
+    "panelCatStartupsVc": "Startups & VC",
+    "panelCatSecurityPolicy": "Veiligheid & Beleid",
+    "panelCatMarkets": "Markten",
+    "panelCatFixedIncomeFx": "Vastrentend & Valuta",
+    "panelCatCommodities": "Grondstoffen",
+    "panelCatCryptoDigital": "Crypto & Digitaal",
+    "panelCatCentralBanks": "Centrale Banken & Economie",
+    "panelCatDeals": "Deals & Institutioneel",
+    "panelCatGulfMena": "Golf & MENA"
   },
   "app": {
     "title": "World Monitor",

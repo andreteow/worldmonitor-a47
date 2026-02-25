@@ -26,3 +26,4 @@ test-results/
 
 # Compiled sebuf gateway bundle
 api/[[][[].*.js
+.claudedocs/

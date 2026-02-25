@@ -1,8 +1,16 @@
 const colorCache = new Map<string, string>();
 
 /**
+ * Clear the cached CSS color values so they are re-read from the document root
+ * on next access. Called when the theme changes.
+ */
+export function invalidateColorCache(): void {
+  colorCache.clear();
+}
+
+/**
  * Read a CSS custom property value from the document root.
- * Permanently cached — single dark theme means values never change at runtime.
+ * Cached until invalidated — call invalidateColorCache() when the theme changes.
  * @param varName CSS variable name including -- prefix (e.g., '--semantic-critical')
  * @returns The computed color value string
  */

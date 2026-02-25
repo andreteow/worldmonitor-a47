@@ -89,7 +89,55 @@
     "filterSources": "Filtra fonti...",
     "sourcesEnabled": "{{enabled}}/{{total}} abilitate",
     "finance": "FINANZA",
-    "toggleTheme": "Attiva/disattiva tema chiaro/scuro"
+    "toggleTheme": "Attiva/disattiva tema chiaro/scuro",
+    "panelDisplayCaption": "Scegli quali pannelli mostrare nella dashboard",
+    "tabGeneral": "Generale",
+    "tabPanels": "Pannelli",
+    "tabSources": "Fonti",
+    "languageLabel": "Lingua",
+    "sourceRegionAll": "Tutti",
+    "sourceRegionWorldwide": "Mondiale",
+    "sourceRegionUS": "Stati Uniti",
+    "sourceRegionMiddleEast": "Medio Oriente",
+    "sourceRegionAfrica": "Africa",
+    "sourceRegionLatAm": "America Latina",
+    "sourceRegionAsiaPacific": "Asia-Pacifico",
+    "sourceRegionEurope": "Europa",
+    "sourceRegionTopical": "Tematico",
+    "sourceRegionIntel": "Intelligence",
+    "sourceRegionTechNews": "Notizie Tech",
+    "sourceRegionAiMl": "IA e ML",
+    "sourceRegionStartupsVc": "Startup e VC",
+    "sourceRegionRegionalTech": "Ecosistemi Regionali",
+    "sourceRegionDeveloper": "Sviluppatori",
+    "sourceRegionCybersecurity": "Cybersicurezza",
+    "sourceRegionTechPolicy": "Politica e Ricerca",
+    "sourceRegionTechMedia": "Media e Podcast",
+    "sourceRegionMarkets": "Mercati e Analisi",
+    "sourceRegionFixedIncomeFx": "Reddito Fisso e Valute",
+    "sourceRegionCommodities": "Materie Prime",
+    "sourceRegionCryptoDigital": "Crypto e Digitale",
+    "sourceRegionCentralBanks": "Banche Centrali ed Economia",
+    "sourceRegionDeals": "Operazioni Societarie",
+    "sourceRegionFinRegulation": "Regolamentazione Finanziaria",
+    "sourceRegionGulfMena": "Golfo e MENA",
+    "filterPanels": "Filtra pannelli...",
+    "panelCatCore": "Principale",
+    "panelCatIntelligence": "Intelligence",
+    "panelCatRegionalNews": "Notizie Regionali",
+    "panelCatMarketsFinance": "Mercati & Finanza",
+    "panelCatTopical": "Tematici",
+    "panelCatDataTracking": "Dati & Monitoraggio",
+    "panelCatTechAi": "Tech & IA",
+    "panelCatStartupsVc": "Startup & VC",
+    "panelCatSecurityPolicy": "Sicurezza & Politica",
+    "panelCatMarkets": "Mercati",
+    "panelCatFixedIncomeFx": "Reddito Fisso & Valute",
+    "panelCatCommodities": "Materie Prime",
+    "panelCatCryptoDigital": "Crypto & Digitale",
+    "panelCatCentralBanks": "Banche Centrali & Economia",
+    "panelCatDeals": "Operazioni & Istituzionale",
+    "panelCatGulfMena": "Golfo & MENA"
   },
   "panels": {
     "liveNews": "Notizie in diretta",
@@ -105,6 +153,8 @@
     "gdeltIntel": "Intelligence in tempo reale",
     "cascade": "Cascata infrastrutturale",
     "politics": "Notizie mondiali",
+    "us": "Stati Uniti",
+    "europe": "Europa",
     "middleeast": "Medio Oriente",
     "africa": "Africa",
     "latam": "America Latina",
@@ -155,10 +205,10 @@
   },
   "modals": {
     "search": {
-      "placeholder": "Cerca notizie, oleodotti, basi, mercati...",
-      "hint": "Notizie • Oleodotti • Basi • Cavi • Datacenter • Mercati",
+      "placeholder": "Cerca o digita un comando...",
+      "hint": "Ricerca • Paesi • Livelli • Pannelli • Navigazione • Impostazioni",
       "recent": "Ricerche recenti",
-      "empty": "Cerca in tutte le fonti dati",
+      "empty": "Cerca dati o esegui comandi",
       "noResults": "Nessun risultato",
       "navigate": "naviga",
       "select": "seleziona",
@@ -185,10 +235,10 @@
         "techhq": "Sede tecnologica",
         "accelerator": "Acceleratore"
       },
-      "placeholderTech": "Cerca aziende, laboratori IA, startup, eventi...",
-      "hintTech": "Sedi • Aziende • Laboratori IA • Startup • Acceleratori • Eventi",
-      "placeholderFinance": "Cerca borse, mercati, banche centrali...",
-      "hintFinance": "Borse • Centri finanziari • Banche centrali • Materie prime"
+      "placeholderTech": "Cerca o digita un comando...",
+      "hintTech": "Ricerca • Aziende • Laboratori IA • Livelli • Navigazione • Impostazioni",
+      "placeholderFinance": "Cerca o digita un comando...",
+      "hintFinance": "Ricerca • Borse • Mercati • Livelli • Navigazione • Impostazioni"
     },
     "signal": {
       "title": "RICERCA DI INTELLIGENZA",
@@ -494,7 +544,8 @@
         "financialCenters": "Centri finanziari",
         "centralBanks": "Banche Centrali",
         "commodityHubs": "Hub delle materie prime",
-        "gulfInvestments": "Investimenti del GCC"
+        "gulfInvestments": "Investimenti del GCC",
+        "tradeRoutes": "Rotte Commerciali"
       },
       "layersTitle": "Livelli",
       "layerGuide": "Guida ai livelli",
@@ -586,7 +637,8 @@
           "transportShipping": "Navi, punti di strozzatura, 61 porti strategici",
           "transportDelays": "Ritardi aeroportuali e fermi a terra (FAA)",
           "naturalEventsFull": "Terremoti (USGS) + tempeste, incendi, vulcani, inondazioni (NASA EONET)",
-          "waterwaysLabels": "Etichette di colli di bottiglia strategici"
+          "waterwaysLabels": "Etichette di colli di bottiglia strategici",
+          "tradeRoutes": "Principali rotte marittime globali che collegano i porti attraverso punti strategici"
         },
         "notes": {
           "timeAffects": "Effetti: terremoti, condizioni meteorologiche, proteste, interruzioni"
@@ -840,8 +892,7 @@
         "minutesAgo": "{{count}} min fa",
         "hoursAgo": "{{count}} h fa",
         "daysAgo": "{{count}} g fa"
-      },
-      "hideFindings": "Hide Intelligence Findings"
+      }
     },
     "satelliteFires": {
       "noData": "Nessun dato sugli incendi disponibile",
@@ -993,7 +1044,27 @@
       "waitingForData": "Waiting for news data...",
       "rankingStories": "Ranking important stories...",
       "analyzingSentiment": "Analyzing sentiment...",
-      "generatingBrief": "Generating world brief..."
+      "generatingBrief": "Generating world brief...",
+      "settingsTitle": "Settings",
+      "sectionMap": "Map",
+      "sectionAi": "AI Analysis",
+      "mapFlashLabel": "Live Event Pulse",
+      "mapFlashDesc": "Flash locations on the map when breaking news arrives",
+      "aiFlowTitle": "Settings",
+      "aiFlowCloudLabel": "IA Cloud (Groq & OpenRouter)",
+      "aiFlowCloudDesc": "Invia i titoli al cloud per il riepilogo IA (consigliato)",
+      "aiFlowBrowserLabel": "Modello locale del browser",
+      "aiFlowBrowserDesc": "Esegui l'IA localmente nel tuo browser",
+      "aiFlowBrowserWarn": "Verranno scaricati circa 250 MB di dati sul tuo computer",
+      "aiFlowOllamaCta": "Vuoi un'IA completamente locale?",
+      "aiFlowOllamaCtaDesc": "Scarica l'app desktop per il supporto Ollama",
+      "aiFlowDownloadDesktop": "Scarica App Desktop →",
+      "aiFlowStatusActive": "IA Cloud attiva",
+      "aiFlowStatusCloudAndBrowser": "IA Cloud + Modello browser attivi",
+      "aiFlowStatusBrowserOnly": "Solo modello browser",
+      "aiFlowStatusDisabled": "Nessun fornitore IA abilitato",
+      "insightsDisabledTitle": "L'analisi IA è disattivata",
+      "insightsDisabledHint": "Enable providers via the settings gear in the map header"
     },
     "etfFlows": {
       "unavailable": "Dati ETF temporaneamente non disponibili",
@@ -1094,7 +1165,14 @@
       "cancel": "Annulla",
       "confirmDelete": "Eliminare questo canale?",
       "confirmTitle": "Conferma",
-      "restoreDefaults": "Ripristina canali predefiniti"
+      "restoreDefaults": "Ripristina canali predefiniti",
+      "availableChannels": "Canali disponibili",
+      "customChannel": "Canale personalizzato",
+      "regionNorthAmerica": "Nord America",
+      "regionEurope": "Europa",
+      "regionLatinAmerica": "America Latina",
+      "regionAsia": "Asia",
+      "regionAfrica": "Africa"
     }
   },
   "popups": {

@@ -4,11 +4,9 @@
  */
 import type { PanelConfig } from '@/types';
 import { DEFAULT_PANELS, STORAGE_KEYS } from '@/config';
-import { loadFromStorage, saveToStorage, isMobileDevice } from '@/utils';
+import { loadFromStorage, saveToStorage } from '@/utils';
 import { t } from '@/services/i18n';
 import { escapeHtml } from '@/utils/sanitize';
-
-const INTEL_FINDINGS_KEY = 'worldmonitor-intel-findings';
 
 function getLocalizedPanelName(panelKey: string, fallback: string): string {
   const key = panelKey.replace(/-([a-z])/g, (_match, group: string) => group.toUpperCase());
@@ -29,20 +27,6 @@ export function initSettingsWindow(): void {
     DEFAULT_PANELS
   );
 
-  const isMobile = isMobileDevice();
-
-  function getFindingsEnabled(): boolean {
-    return localStorage.getItem(INTEL_FINDINGS_KEY) !== 'hidden';
-  }
-
-  function setFindingsEnabled(enabled: boolean): void {
-    if (enabled) {
-      localStorage.removeItem(INTEL_FINDINGS_KEY);
-    } else {
-      localStorage.setItem(INTEL_FINDINGS_KEY, 'hidden');
-    }
-  }
-
   function render(): void {
     const panelEntries = Object.entries(panelSettings).filter(
       ([key]) => key !== 'runtime-config'
@@ -58,27 +42,12 @@ export function initSettingsWindow(): void {
       )
       .join('');
 
-    const findingsHtml = isMobile
-      ? ''
-      : `
-      <div class="panel-toggle-item ${getFindingsEnabled() ? 'active' : ''}" data-panel="intel-findings">
-        <div class="panel-toggle-checkbox">${getFindingsEnabled() ? '✓' : ''}</div>
-        <span class="panel-toggle-label">Intelligence Findings</span>
-      </div>
-    `;
-
     const grid = document.getElementById('panelToggles');
     if (grid) {
-      grid.innerHTML = panelHtml + findingsHtml;
+      grid.innerHTML = panelHtml;
       grid.querySelectorAll('.panel-toggle-item').forEach((item) => {
         item.addEventListener('click', () => {
           const panelKey = (item as HTMLElement).dataset.panel!;
-          if (panelKey === 'intel-findings') {
-            const next = !getFindingsEnabled();
-            setFindingsEnabled(next);
-            render();
-            return;
-          }
           const config = panelSettings[panelKey];
           if (config) {
             config.enabled = !config.enabled;
