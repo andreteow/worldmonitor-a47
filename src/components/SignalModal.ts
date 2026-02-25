@@ -132,7 +132,7 @@ export class SignalModal {
     };
 
     const icon = typeIcons[alert.type] || '⚠️';
-    const color = priorityColors[alert.priority] || '#ff9944';
+    const color = priorityColors[alert.priority] || '#ff8800';
 
     let detailsHtml = '';
 

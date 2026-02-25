@@ -32,7 +32,7 @@ import { fetchConflictEvents, fetchUcdpClassifications, fetchHapiSummary, fetchU
 import { fetchUnhcrPopulation } from '@/services/displacement';
 import { fetchClimateAnomalies } from '@/services/climate';
 import { enrichEventsWithExposure } from '@/services/population-exposure';
-import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice, setTheme, getCurrentTheme } from '@/utils';
+import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice } from '@/utils';
 import { reverseGeocode } from '@/utils/reverse-geocode';
 import { CountryBriefPage } from '@/components/CountryBriefPage';
 import { mountCommunityWidget } from '@/components/CommunityWidget';
@@ -97,7 +97,7 @@ import { STOCK_EXCHANGES, FINANCIAL_CENTERS, CENTRAL_BANKS, COMMODITY_HUBS } fro
 import { IntelligenceServiceClient } from '@/generated/client/worldmonitor/intelligence/v1/service_client';
 import { ResearchServiceClient } from '@/generated/client/worldmonitor/research/v1/service_client';
 import { isFeatureAvailable } from '@/services/runtime-config';
-import { trackEvent, trackPanelView, trackThemeChanged, trackMapViewChange, trackMapLayerToggle, trackCountrySelected, trackCountryBriefOpened, trackSearchResultSelected, trackPanelToggled, trackUpdateShown, trackUpdateClicked, trackUpdateDismissed, trackCriticalBannerAction, trackDeeplinkOpened } from '@/services/analytics';
+import { trackEvent, trackPanelView, trackMapViewChange, trackMapLayerToggle, trackCountrySelected, trackCountryBriefOpened, trackSearchResultSelected, trackPanelToggled, trackUpdateShown, trackUpdateClicked, trackUpdateDismissed, trackCriticalBannerAction, trackDeeplinkOpened } from '@/services/analytics';
 import { getCountryAtCoordinates, hasCountryGeometry, isCoordinateInCountry, preloadCountryGeometry } from '@/services/country-geometry';
 import { initI18n, t, changeLanguage } from '@/services/i18n';
 
@@ -1812,11 +1812,6 @@ export class App {
         <div class="header-right">
           <button class="search-btn" id="searchBtn"><kbd>⌘K</kbd> ${t('header.search')}</button>
           <button class="copy-link-btn" id="copyLinkBtn">${t('header.copyLink')}</button>
-          <button class="theme-toggle-btn" id="headerThemeToggle" title="${t('header.toggleTheme')}">
-            ${getCurrentTheme() === 'dark'
-        ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
-        : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>'}
-          </button>
           <button class="fullscreen-btn" id="fullscreenBtn" title="${t('header.fullscreen')}">⛶</button>
           <button class="settings-btn" id="settingsBtn">⚙ ${t('header.settings')}</button>
           <button class="sources-btn" id="sourcesBtn">📡 ${t('header.sources')}</button>
@@ -2630,14 +2625,6 @@ export class App {
     });
 
 
-    // Header theme toggle button
-    document.getElementById('headerThemeToggle')?.addEventListener('click', () => {
-      const next = getCurrentTheme() === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-      this.updateHeaderThemeIcon();
-      trackThemeChanged(next);
-    });
-
     // Sources modal
     this.setupSourcesModal();
 
@@ -2694,12 +2681,6 @@ export class App {
     // Refresh CII when focal points are ready (ensures focal point urgency is factored in)
     window.addEventListener('focal-points-ready', () => {
       (this.panels['cii'] as CIIPanel)?.refresh(true); // forceLocal to use focal point data
-    });
-
-    // Re-render components with baked getCSSColor() values on theme change
-    window.addEventListener('theme-changed', () => {
-      this.map?.render();
-      this.updateHeaderThemeIcon();
     });
 
     // Idle detection - pause animations after 2 minutes of inactivity
@@ -3052,15 +3033,6 @@ export class App {
       const panel = this.panels[key];
       panel?.toggle(config.enabled);
     });
-  }
-
-  private updateHeaderThemeIcon(): void {
-    const btn = document.getElementById('headerThemeToggle');
-    if (!btn) return;
-    const isDark = getCurrentTheme() === 'dark';
-    btn.innerHTML = isDark
-      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
-      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
   }
 
   private async loadAllData(): Promise<void> {

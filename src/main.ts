@@ -1,5 +1,12 @@
 import './styles/main.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
+
+// A47 brand fonts via Fontsource (self-hosted, Latin subset)
+import '@fontsource/saira-semi-condensed/600.css';
+import '@fontsource/saira-semi-condensed/700.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/700.css';
 import * as Sentry from '@sentry/browser';
 import { inject } from '@vercel/analytics';
 import { App } from './App';
@@ -119,7 +126,6 @@ window.addEventListener('unhandledrejection', (e) => {
 import { debugInjectTestEvents, debugGetCells, getCellCount } from '@/services/geo-convergence';
 import { initMetaTags } from '@/services/meta-tags';
 import { initAnalytics, trackApiKeysSnapshot } from '@/services/analytics';
-import { applyStoredTheme } from '@/utils/theme-manager';
 import { clearChunkReloadGuard, installChunkReloadGuard } from '@/bootstrap/chunk-reload';
 
 // Auto-reload on stale chunk 404s after deployment (Vite fires this for modulepreload failures).
@@ -134,10 +140,7 @@ void initAnalytics().then(() => trackApiKeysSnapshot()).catch(() => {});
 // Initialize dynamic meta tags for sharing
 initMetaTags();
 
-// Apply stored theme preference before app initialization (safety net for inline script)
-applyStoredTheme();
-
-// Remove no-transition class after first paint to enable smooth theme transitions
+// Remove no-transition class after first paint
 requestAnimationFrame(() => {
   document.documentElement.classList.remove('no-transition');
 });
