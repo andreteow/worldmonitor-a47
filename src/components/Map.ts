@@ -196,10 +196,6 @@ export class MapComponent {
     this.loadMapData();
     this.setupResizeObserver();
 
-    window.addEventListener('theme-changed', () => {
-      this.baseRendered = false;
-      this.render();
-    });
   }
 
   private setupResizeObserver(): void {
@@ -576,11 +572,11 @@ export class MapComponent {
     if (SITE_VARIANT === 'tech') {
       // Tech variant legend
       legend.innerHTML = `
-        <div class="map-legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>${escapeHtml(t('components.deckgl.layers.techHQs').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="legend-dot" style="background:#06b6d4"></span>${escapeHtml(t('components.deckgl.layers.startupHubs').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="legend-dot" style="background:#f59e0b"></span>${escapeHtml(t('components.deckgl.layers.cloudRegions').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon" style="color:#a855f7">📅</span>${escapeHtml(t('components.deckgl.layers.techEvents').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon" style="color:#4ecdc4">💾</span>${escapeHtml(t('components.deckgl.layers.aiDataCenters').toUpperCase())}</div>
+        <div class="map-legend-item"><span class="legend-dot" style="background:#8f49ff"></span>${escapeHtml(t('components.deckgl.layers.techHQs').toUpperCase())}</div>
+        <div class="map-legend-item"><span class="legend-dot" style="background:#47f5c8"></span>${escapeHtml(t('components.deckgl.layers.startupHubs').toUpperCase())}</div>
+        <div class="map-legend-item"><span class="legend-dot" style="background:#feed55"></span>${escapeHtml(t('components.deckgl.layers.cloudRegions').toUpperCase())}</div>
+        <div class="map-legend-item"><span class="map-legend-icon" style="color:#8f49ff">📅</span>${escapeHtml(t('components.deckgl.layers.techEvents').toUpperCase())}</div>
+        <div class="map-legend-item"><span class="map-legend-icon" style="color:#47f5c8">💾</span>${escapeHtml(t('components.deckgl.layers.aiDataCenters').toUpperCase())}</div>
       `;
     } else {
       // Geopolitical variant legend

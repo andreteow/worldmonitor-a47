@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { FontaineTransform } from 'fontaine';
 import { resolve, dirname, extname } from 'path';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import { brotliCompress } from 'zlib';
@@ -487,6 +488,9 @@ export default defineConfig({
     youtubeLivePlugin(),
     sebufApiPlugin(),
     brotliPrecompressPlugin(),
+    FontaineTransform.vite({
+      fallbacks: ['system-ui', 'Arial', 'sans-serif'],
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,
@@ -505,8 +509,8 @@ export default defineConfig({
         scope: '/',
         display: 'standalone',
         orientation: 'any',
-        theme_color: '#0a0f0a',
-        background_color: '#0a0f0a',
+        theme_color: '#0a0a1f',
+        background_color: '#0a0a1f',
         categories: activeMeta.categories,
         icons: [
           { src: '/favico/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
@@ -580,23 +584,7 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'google-fonts-css',
-              expiration: { maxEntries: 10, maxAgeSeconds: 365 * 24 * 60 * 60 },
-            },
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-woff',
-              expiration: { maxEntries: 30, maxAgeSeconds: 365 * 24 * 60 * 60 },
-              cacheableResponse: { statuses: [0, 200] },
-            },
-          },
+          // Google Fonts Workbox rules removed — fonts are self-hosted via Fontsource
           {
             urlPattern: /\/assets\/locale-.*\.js$/i,
             handler: 'CacheFirst',

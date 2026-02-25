@@ -1,23 +1,22 @@
-/* Palantir-style settings window — dark, readable, color-coded */
+/* A47-themed settings window */
 .settings-shell {
   --settings-bg: var(--bg-secondary);
   --settings-surface: var(--surface-hover);
   --settings-surface-inset: var(--surface);
   --settings-border: var(--overlay-medium);
   --settings-border-strong: var(--overlay-heavy);
-  --settings-text: #e8eaed;
-  --settings-text-secondary: #9aa0a6;
+  --settings-text: var(--text);
+  --settings-text-secondary: var(--text-dim);
   --settings-accent: var(--semantic-info);
-  --settings-green: #34d399;
-  --settings-yellow: #fbbf24;
+  --settings-green: var(--green);
+  --settings-yellow: var(--yellow);
   --settings-red: var(--semantic-critical);
-  --settings-blue: #60a5fa;
-  --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  --settings-blue: var(--semantic-info);
 
   height: 100vh;
   background: var(--settings-bg);
   color: var(--settings-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   padding: 0;
   box-sizing: border-box;
@@ -50,7 +49,6 @@
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   margin-bottom: -1px;
-  letter-spacing: 0.01em;
 }
 
 .settings-tab:hover {
@@ -203,7 +201,6 @@
   padding: 3px 10px;
   border-radius: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 .settings-runtime-panel .runtime-pill.ok {
@@ -387,7 +384,6 @@
   min-width: 80px;
   text-align: center;
   transition: background 0.15s, border-color 0.15s, transform 0.1s;
-  letter-spacing: 0.01em;
 }
 
 .settings-btn:active {
@@ -574,7 +570,6 @@
   font-weight: 600;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
   position: sticky;
   top: 0;
   background: var(--settings-surface);
@@ -618,7 +613,6 @@ tr.diag-err td { color: var(--settings-red); }
   font-size: 22px;
   font-weight: 700;
   color: var(--settings-text);
-  letter-spacing: -0.01em;
 }
 
 .wm-hero-desc {
@@ -748,7 +742,6 @@ tr.diag-err td { color: var(--settings-red); }
   padding: 3px 10px;
   border-radius: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
